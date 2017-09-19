@@ -174,14 +174,14 @@ input:focus {
   width: 100%;
 }
 
-#lineoutput, #stop-game, #settings, #btn-rules {
+#lineoutput, #settings, #btn-rules {
   display: inline-block;
   vertical-align: top;
   margin: 8px;
 }
 
 @media screen and (max-width: 320px) {
-  #lineoutput, #stop-game, #settings, #btn-rules {
+  #lineoutput, #settings, #btn-rules {
     display: block;
   }
 }
@@ -238,12 +238,12 @@ input:focus {
   }
 }
 
-#current-score, #dices, #throw, #hold, #new-game {
+#current-score, #dices, #throw, #hold, #stop-game {
   display: block;
   margin: 0 auto;
 }
 
-#throw, #hold, #new-game {
+#throw, #hold, #stop-game {
   margin: 16px auto;
 }
 
