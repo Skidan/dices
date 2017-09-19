@@ -1,0 +1,224 @@
+@import "reset";
+@import "var";
+@import "common";
+// ADAPTIVE
+#wrapper {
+  display: block;
+  margin: 0 auto;
+  background-color: $color-dark; //temp
+  min-width: 240px;
+  width: 100%;
+  height: 100%; //temp
+  @media screen and (max-width: 720px) {
+    width: 100%;
+  }
+  @media screen and (min-width: 721px) and (max-width: 960px) {
+    width: 720px;
+  }
+  @media screen and (min-width: 961px) and (max-width: 1280px) {
+    width: 960px;
+  }
+  @media screen and (min-width: 1281px) {
+    width: 1200px;
+  }
+}
+
+//header & settings
+#header {
+  width: 100%;
+}
+#mainmenu {
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+#lineoutput, #stop-game, #settings, #btn-rules {
+  display: inline-block;
+  vertical-align: top;
+  margin: $basic/2;
+  @media screen and (max-width: 320px) {
+    display: block;
+  }
+}
+
+
+// main body (scores & controls)
+#main {
+  width: 100%;
+  text-align: center;
+  margin-top: $basic * 5;
+}
+#panel-0, #panel-1 {
+  display: block;
+  text-align: center;
+  background-color: $color-bg;
+  width: 100%;
+  @media screen and (min-width: 481px) {
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+    //outline: 1px dotted orange;
+  }
+}
+#player-0-name, #player-1-name, #player-0-score, #player-1-score, {
+  display: block;
+  color: $color-main;
+}
+#player-0-name, #player-1-name {
+  font-size: $basic * 3;
+  line-height: $basic * 3;
+  font-family: $font-heading;
+}
+.names {
+  display: block;
+  color: $color-main;
+}
+#player-0-score, #player-1-score {
+  font-size: $basic * 5;
+  line-height: $basic * 7;
+}
+#controls {
+  display: block;
+  //outline: $test;
+  @media screen and (min-width: 481px) {
+    position: relative;
+  }
+}
+#current-score, #dices, #throw, #hold, #new-game {
+  display: block;
+  margin: 0 auto;
+}
+#throw, #hold, #new-game {
+  margin: $basic auto;
+}
+#current-score {
+  display: block;
+  font-size: $basic * 3;
+  line-height: $basic * 5;
+  background: $color-dark;
+  //outline: $test;
+  @media screen and (min-width: 481px) {
+    display: inline-block;
+    vertical-align: top;
+    width: $basic*6;
+    height: $basic*6;
+    border-radius: 50%;
+    position: absolute;
+    top: -$basic * 3;
+    margin-left: -$basic * 3;
+  }
+}
+#dice-0, #dice-1 {
+  width: $basic * 4;
+  height: $basic * 4;
+  display: inline-block;
+  vertical-align: top;
+  border: solid $basic * .2 $color-light;
+  border-radius: $basic * 1.5;
+  background: $color-bg;
+  background-size: cover;
+  margin: $basic;  
+  @media screen and (min-width: 481px) {
+    margin-top: $basic * 2.5;
+  }
+}
+.one {
+  background: $dice-1;
+}
+.two {
+  background: $dice-2;
+}
+.three {
+  background: $dice-3;
+}
+.four {
+  background: $dice-4;
+}
+.five {
+  background: $dice-5;
+}
+.six {
+  background: $dice-6;
+}
+.dices-options {
+  display: block;
+}
+.active {
+  background: $bg-img;
+  font-weight: bold;
+}
+.winner {
+  font-weight: bold;
+  color: $color-contrast !important;
+}
+
+// credits & other
+#footer {}
+
+// different types of modal windows
+#modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .7);
+}
+#modal-window {
+  display: block;
+  //position: absolute;
+  margin: 0;
+  min-width: 320px;
+  width: 100%;
+  overflow: hidden;
+  background: $color-bgdark $bg-img;
+  margin: $basic*3 auto;
+  padding-bottom: $basic;
+  border-bottom: .2*$basic solid $color-light;
+  border-top: .2*$basic solid $color-light;
+  @media screen and (min-width: 721px) {    
+    width: $basic * 45;
+    min-width: $basic * 15;
+    border-top-left-radius: $basic;
+    border-top-right-radius: $basic;
+  }
+}
+#modal-heading {
+  text-align: center; 
+  padding: $basic * .4;
+  background-color: $color-light;
+  box-shadow: 0 0 $basic rgba(0,0,0,0.7);
+}
+#rules, #names-input, #settings-input, #alert {
+  margin: $basic/2;
+  padding: $basic/2;
+  outline: solid 1px $color-bgdark;
+  @media screen and (min-width: 721px) {
+    padding: $basic;
+    margin: $basic;
+  }
+}
+#totalscore {
+  width: $basic * 4;
+}
+#alert {
+  color: $color-contrast;
+  text-align: center;
+}
+#buttonset {
+  //width: 100%;
+  margin-right: $basic/4;
+  text-align: right;
+  @media screen and (min-width: 721px) {
+    margin-right: $basic/2 + $basic/4;
+  }
+}
+#end-game-btn {
+  border: 1px solid $color-contrast;
+  color: $color-contrast;
+}
+#cancel-btn {
+  border: 1px solid orange;
+  color: orange;
+}

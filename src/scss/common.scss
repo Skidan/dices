@@ -1,0 +1,113 @@
+// FONT INIT (for inline-blocks)
+//#main,
+h1, h2, h3, h4, h5, h6,
+label,
+input,
+p,
+.names,
+#lineoutput, 
+#new-game, 
+#stop-game, 
+#settings, 
+#player-0-name, 
+#player-0-score, 
+#player-1-name, 
+#player-1-score, 
+#current-score, 
+#throw, 
+#hold, 
+#modal-heading, 
+//#rules,
+//#settings-input,
+//#alert,
+button
+{font-size: $basic; font-family: $font-main; line-height: $basic * 1.5}
+
+// COMMON STYLES
+.hidden {
+  display: none !important;
+}
+html {
+  height: 100%;
+  width: 100%;
+}
+body {
+  width: 100%;
+  height: 100%;
+  background-color: $color-main; //temp
+  //background: url(https://us.v-cdn.net/5021068/uploads/editor/9v/asnntb2gqeu3.jpg) center no-repeat;
+  //background-size: cover;
+}
+button {
+  display: inline-block;
+  vertical-align: top;
+  color: $color-light;
+  line-height: $basic*1.5;
+  padding: 0 $basic*1.5;
+  margin: $basic/4;
+  border: 1px solid $color-light;
+  border-radius: $basic/4;
+  background: linear-gradient(to bottom, #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%);
+  &:hover {
+    background: linear-gradient(to bottom, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%);
+    color: $color-light;
+    cursor: pointer;
+  }
+  &:active {
+    background: linear-gradient(to bottom, #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
+    color: $color-contrast;
+    cursor: pointer;
+  }
+}
+span {
+  color: $color-bg;
+}
+h1, h2, h3 {
+  font-size: $basic * 3;
+  line-height: $basic * 4;
+  font-family: $font-heading;
+  text-transform: capitalize;
+  color: $color-bg;
+}
+h2 {
+  font-size: $basic * 2;
+  line-height: $basic * 3;
+}
+h3 {
+  font-size: $basic * 1.5;
+  line-height: $basic * 2.5;
+}
+h4, h5, h6 {
+  font-size: $basic * 1.5;
+  line-height: $basic * 2.5;
+  font-family: $font-main;
+  font-weight: bold;
+  text-transform: capitalize;
+  color: $color-bg;
+}
+h5 {
+  font-size: $basic * 1.25;
+  line-height: $basic * 2;
+}
+h6 {
+  font-size: $basic * 1.25;
+  line-height: $basic * 2;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: lowercase;
+}
+label {
+  margin-left: $basic/2;
+  color: $color-main;
+}
+input {
+  padding: 0 $basic/4;
+  border: 1px solid $color-bgdark;
+  background: $color-bg;
+  color: $color-bgdark;
+  &:focus {
+    border: 1px solid $color-light;
+    background: white;
+    color: $color-light;
+  }
+}

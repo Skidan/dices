@@ -1,0 +1,63 @@
+doctype html
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		meta(http-equiv="X-UA-Compatible" content="ie=edge")
+		link(rel="stylesheet" href="css/main.css")
+		link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300|Quicksand:300")
+		title Dices play
+	body
+		#wrapper
+			#header
+				nav#mainmenu
+					span#lineoutput You can do something...
+					button(type="button")#btn-rules Rules...
+					button(type="button")#settings Settings
+					button(type="button")#stop-game Stop
+			#main
+				#panel-0
+					span#player-0-name Name1
+					span#player-0-score 00
+				#panel-1
+					span#player-1-name Name2
+					span#player-1-score 00
+				#controls
+					span#current-score XX
+					#dices
+						#dice-0
+						#dice-1
+					button(type="button")#throw Throw dices!
+					button(type="button")#hold Hold
+					button(type="button")#new-game Start new
+			#footer
+		#modal
+			#modal-window
+				h3#modal-heading Modal window heading
+				#rules
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta nulla,
+				#names-input
+					span.names Input first player's name: 
+					input(type="text" size="12" name="firstplayername" placeholder="Player1")#name-0
+					span.names Input second player's name: 
+					input(type="text" size="12" name="secondplayername" placeholder="Player2")#name-1
+				#settings-input
+					#dises-amount
+						.dices-options
+							input(type="radio" name="dices-amount" value="one" checked="true")#one-dice
+							label(for="one-dice") one dice in play
+						.dices-options
+							input(type="radio" name="dices-amount" value="two")#two-dices
+							label(for="two-dices") two dices in play
+					#total-scores
+						input(type="number" value="100" max="9999")#totalscore
+						label(for="totalcsore") Input maximal score
+				#alert
+					p All results will be reseted to null. Do You really want to end this game?
+				#buttonset
+					button(type="button")#close-btn Close
+					button(type="button")#cancel-btn Cancel
+					button(type="button")#save-btn Save settings
+					button(type="button")#ok-btn Ok    
+					button(type="button")#end-game-btn End game anyway
+		script(src="js/main.js")
