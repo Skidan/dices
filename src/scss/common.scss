@@ -6,7 +6,8 @@ input,
 p,
 .names,
 #lineoutput, 
-#new-game, 
+#new-game,
+#gamename, 
 #stop-game, 
 #settings, 
 #player-0-name, 
@@ -34,9 +35,10 @@ html {
 body {
   width: 100%;
   height: 100%;
-  background-color: $color-main; //temp
-  //background: url(https://us.v-cdn.net/5021068/uploads/editor/9v/asnntb2gqeu3.jpg) center no-repeat;
-  //background-size: cover;
+  background: url(../img/bg.jpg) center no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  
 }
 button {
   display: inline-block;
