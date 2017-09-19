@@ -32,7 +32,7 @@
   text-align: center;
   width: 100%;
 }
-#lineoutput, #stop-game, #settings, #btn-rules {
+#lineoutput, #settings, #btn-rules {
   display: inline-block;
   vertical-align: top;
   margin: $basic/2;
@@ -84,11 +84,11 @@
     position: relative;
   }
 }
-#current-score, #dices, #throw, #hold, #new-game {
+#current-score, #dices, #throw, #hold, #stop-game {
   display: block;
   margin: 0 auto;
 }
-#throw, #hold, #new-game {
+#throw, #hold, #stop-game {
   margin: $basic auto;
 }
 #current-score {

@@ -1,8 +1,10 @@
+// создаём переменные для DOM-объектов
 var modalDOM, btnCloseDOM, btnSettingsDOM;
 modalDOM = document.getElementById("modal");
 btnCloseDOM = document.getElementById("close-btn");
 btnSettingsDOM = document.getElementById("settings");
 
+// создаём переменные для хранения настроек и рассчётов
 var dice, dicesAmount, maxScore;
 
 // COMMON FUNCTIONS
