@@ -4,258 +4,195 @@
 // ADAPTIVE
 #wrapper {
   display: block;
-  margin: 0 auto;
-  min-width: 240px;
-  width: 100%;
-  height: 100%; //temp
-  @media screen and (max-width: 720px) {
-    width: 100%;
-  }
-  @media screen and (min-width: 721px) and (max-width: 960px) {
+
+  width: 100vw;
+  height: 100vh;
+  //outline: $test;
+  //background: $color-light;
+  min-width: 320px;
+  @media screen and (min-width: 723px) and (max-width: 960px) {
     width: 720px;
+    margin: 0 auto;
   }
-  @media screen and (min-width: 961px) and (max-width: 1280px) {
+  @media screen and (min-width: 963px) {
     width: 960px;
+    margin: 0 auto;
   }
-  @media screen and (min-width: 1281px) {
-    width: 1200px;
+}
+#header, #footer, #main {
+  background-color: $color-main;
+}
+#header {
+  @media screen and (min-width: 721px) {
+    border-bottom-right-radius: $basic;
+    border-bottom-left-radius: $basic;
+    box-shadow: 0 0 $basic rgba(0,0,0,.7);
+  }
+}
+#footer {
+  display: none;
+}
+#main {
+  overflow: hidden;
+  @media screen and (min-width: 721px) {
+    margin: $basic * 2 0;
+    border-radius: $basic;
+    box-shadow: 0 0 $basic rgba(0,0,0,.7);
   }
 }
 
-//header & settings
-#header {
-  width: 100%;
-  background-color: $color-dark; //temp
-  overflow: hidden;
-  border-bottom-right-radius: $basic;
-  border-bottom-left-radius: $basic;
-  box-shadow: 0 0 10px rgba(0,0,0,0.7);
-}
-#mainmenu {
-  display: block;
-  text-align: center;
-  width: 100%;
-}
-#lineoutput, #settings, #btn-rules {
+// HEADER
+#rules, #settings {
   display: inline-block;
   vertical-align: top;
-  margin: $basic/2;
-  @media screen and (max-width: 320px) {
-    display: block;
-  }
-}
-
-
-// main body (scores & controls)
-#main {
-  width: 100%;
-  text-align: center;
-  margin: $basic * 3 0;  
-  background-color: $color-dark;
+  height: $basic * 2;
+  width: $basic * 2;
+  margin: $basic / 2;
+  background: url(../img/rules.png) center no-repeat;
+  background-size: contain;
   //outline: $test;
-  overflow: hidden;
-  border-radius: $basic;
-  box-shadow: 0 0 10px rgba(0,0,0,0.7);
 }
-
-#start-panel {
-  width: 100%;
+#settings {
+  background: url(../img/settings.png) center no-repeat;
+  background-size: contain;
+}
+#lineout {
+  display: inline-block;
+  width: calc(100% - 112px);
+  margin: $basic / 2;
   //outline: $test;
-  display: block;
-  background: url(../img/startbg.jpg);
-  background-size: cover;
-  @media screen and (min-width: 721px) {
-    height: 80vh;
-  }
 }
 
-#gamename, #new-game {
+// MAIN
+#play {
   display: block;
-  width: 50%;
   margin: 0 auto;
-}
-#gamename {
-  display: block;
-  font-size: $basic * 3;
-  line-height: $basic * 3;
-  @media screen and (min-width: 721px) {
-    font-size: $basic * 5;
-    line-height: 60vh;
-  }
-}
-
-#panel-0, #panel-1 {
-  display: block;
-  text-align: center;
-  background-color: $color-bg;
   width: 100%;
-  @media screen and (min-width: 481px) {
-    display: inline-block;
-    vertical-align: top;
-    width: 50%;
+  height: 256px;
+  background: url(../img/throw.png) center bottom no-repeat;
+  text-align: center;
+  @media screen and (min-width: 721px) {
+    cursor: pointer;
+    transition: transform .2s;
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }
-#player-0-name, #player-1-name, #player-0-score, #player-1-score, {
-  display: block;
+#play-game {
+  font-family: $font-heading;
+  font-size: $basic * 4;
+  line-height: $basic * 6;
+}
+#player-0, #player-1 {
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  background: $color-bg $bg-img;
   color: $color-main;
 }
 #player-0-name, #player-1-name {
-  font-size: $basic * 3;
-  line-height: $basic * 3;
-  font-family: $font-heading;
-}
-.names {
   display: block;
+  font-size: $basic * 2;
+  line-height: $basic * 3;
   color: $color-main;
 }
 #player-0-score, #player-1-score {
-  font-size: $basic * 5;
-  line-height: $basic * 7;
+  font-size: $basic * 4;
+  line-height: $basic * 6;
+  color: $color-main;
 }
-#controls {
-  //outline: $test;
-  display: block;
-  @media screen and (min-width: 481px) {
-    position: relative;
-  }
-}
-#current-score, #dices, #throw, #hold, #stop-game {
-  display: block;
-  margin: 0 auto;
-}
-#throw, #hold, #stop-game {  
-  line-height: $basic*1.5;
-  padding: 0 $basic*1.5;
-  margin: $basic auto;
-}
-#current-score {
-  display: block;
-  font-size: $basic * 3;
-  line-height: $basic * 5;
-  background: $color-dark;
-  //outline: $test;
-  @media screen and (min-width: 481px) {
-    display: inline-block;
-    vertical-align: top;
-    width: $basic*6;
-    height: $basic*6;
-    border-radius: 50%;
-    position: absolute;
-    top: -$basic * 3;
-    margin-left: -$basic * 3;
-  }
-}
-#dice-0, #dice-1 {
-  width: $basic * 4;
-  height: $basic * 4;
+#dices {
   display: inline-block;
   vertical-align: top;
-  border: solid $basic * .2 $color-light;
-  border-radius: $basic * 1.5;
-  background: $color-bg;
-  background-size: cover;
-  margin: $basic;  
-  @media screen and (min-width: 481px) {
-    margin-top: $basic * 2.5;
+  width: 50%;
+  text-align: center;
+}
+#dice-0, #dice-1 {
+  display: inline-block;
+  vertical-align: top;
+  width: $basic * 3;
+  height: $basic * 3;
+  margin: $basic/2;
+  border-radius: $basic;
+  border: $basic / 4 solid $color-light;
+  background-color: $color-bg ;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MG1tIiBoZWlnaHQ9IjYwbW0iIHZpZXdCb3g9IjAgMCA2MDAwIDYwMDAiPiA8ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWy5kb3RzIHtmaWxsOiMxMjdFOUJ9LmJnIHtmaWxsOiNFOUVBRUN9XV0+PC9zdHlsZT48L2RlZnM+IDxnIGlkPSJkaWNlLW9iamVjdCI+ICA8cmVjdCBpZD0iYmFja2dyb3VuZCIgY2xhc3M9ImJnIiB3aWR0aD0iNjAwMCIgaGVpZ2h0PSI2MDAwIi8+ICA8cGF0aCBpZD0iZDAxIiBjbGFzcz0iZG90cyIgZD0iTTEyMDAgNzAwYzI3NiwwIDUwMCwyMjQgNTAwLDUwMCAwLDI3NiAtMjI0LDUwMCAtNTAwLDUwMCAtMjc2LDAgLTUwMCwtMjI0IC01MDAsLTUwMCAwLC0yNzYgMjI0LC01MDAgNTAwLC01MDB6Ii8+ICA8cGF0aCBpZD0iZDAyIiBjbGFzcz0iZG90cyIgZD0iTTEyMDAgMjUwMGMyNzYsMCA1MDAsMjI0IDUwMCw1MDAgMCwyNzYgLTIyNCw1MDAgLTUwMCw1MDAgLTI3NiwwIC01MDAsLTIyNCAtNTAwLC01MDAgMCwtMjc2IDIyNCwtNTAwIDUwMCwtNTAweiIvPiAgPHBhdGggaWQ9ImQwMyIgY2xhc3M9ImRvdHMiIGQ9Ik0xMjAwIDQzMDBjMjc2LDAgNTAwLDIyNCA1MDAsNTAwIDAsMjc2IC0yMjQsNTAwIC01MDAsNTAwIC0yNzYsMCAtNTAwLC0yMjQgLTUwMCwtNTAwIDAsLTI3NiAyMjQsLTUwMCA1MDAsLTUwMHoiLz4gIDxwYXRoIGlkPSJkMDQiIGNsYXNzPSJkb3RzIiBkPSJNMzAwMCAyNTAwYzI3NiwwIDUwMCwyMjQgNTAwLDUwMCAwLDI3NiAtMjI0LDUwMCAtNTAwLDUwMCAtMjc2LDAgLTUwMCwtMjI0IC01MDAsLTUwMCAwLC0yNzYgMjI0LC01MDAgNTAwLC01MDB6Ii8+ICA8cGF0aCBpZD0iZDA1IiBjbGFzcz0iZG90cyIgZD0iTTQ4MDAgNzAwYzI3NiwwIDUwMCwyMjQgNTAwLDUwMCAwLDI3NiAtMjI0LDUwMCAtNTAwLDUwMCAtMjc2LDAgLTUwMCwtMjI0IC01MDAsLTUwMCAwLC0yNzYgMjI0LC01MDAgNTAwLC01MDB6Ii8+ICA8cGF0aCBpZD0iZDA2IiBjbGFzcz0iZG90cyIgZD0iTTQ4MDAgMjUwMGMyNzYsMCA1MDAsMjI0IDUwMCw1MDAgMCwyNzYgLTIyNCw1MDAgLTUwMCw1MDAgLTI3NiwwIC01MDAsLTIyNCAtNTAwLC01MDAgMCwtMjc2IDIyNCwtNTAwIDUwMCwtNTAweiIvPiAgPHBhdGggaWQ9ImQwNyIgY2xhc3M9ImRvdHMiIGQ9Ik00ODAwIDQzMDBjMjc2LDAgNTAwLDIyNCA1MDAsNTAwIDAsMjc2IC0yMjQsNTAwIC01MDAsNTAwIC0yNzYsMCAtNTAwLC0yMjQgLTUwMCwtNTAwIDAsLTI3NiAyMjQsLTUwMCA1MDAsLTUwMHoiLz4gPC9nPjwvc3ZnPg==);
+  background-size: contain;
+  @media screen and (min-width: 721px) {
+    width: $basic * 4;
+    height: $basic * 4;
+    margin: $basic ;
+    border-radius: $basic * 1.5;
   }
 }
-.one {
-  background: $dice-1;
+#current-score {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+  text-align: center;
+  font-size: $basic * 4;
+  line-height: $basic * 6;
 }
-.two {
-  background: $dice-2;
-}
-.three {
-  background: $dice-3;
-}
-.four {
-  background: $dice-4;
-}
-.five {
-  background: $dice-5;
-}
-.six {
-  background: $dice-6;
-}
-.dices-options {
+#throw, #hold {
   display: block;
+  text-align: center;
+  margin: $basic * 2 auto;
+  @media screen and (min-width: 721px) {
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+    margin: 0;
+  }  
+}
+#throw-img, #hold-img {
+  display: block;
+  height: $basic * 6;
+  background: url(../img/hand-throw.png) center no-repeat;
+  background-size: contain;
+  @media screen and (min-width: 721px) {
+    cursor: pointer;
+    transition: transform .2s;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }  
+}
+#hold-img {
+  background: url(../img/hold.png) center no-repeat;
+  background-size: contain;
+}
+#stop {
+  display: block;
+  text-align: center;
+  margin: $basic * 2 auto;
+}
+#stop-game {
+  width: 80%;
+  color: $color-bg;
+  border: 1px solid $color-contrast;
+  background: linear-gradient(to bottom, #f3c5bd 0%,#e86c57 49%,#ea2803 53%,#aa0e00 100%);
+  &:hover {
+    background: linear-gradient(to bottom, #f3c5bd 0%,#e5978b 49%,#ff3205 53%,#aa0e00 100%);
+  }
+  &:active {
+    background: linear-gradient(to bottom, #d86d63 0%,#c9847a 49%,#dd2104 54%,#7f1000 100%);
+  }
+}
+
+// MODAL WINDOW
+
+
+//MODIFIERS
+.hidden {
+  display: none !important;
 }
 .active {
-  background: $bg-img;
+  background: $color-bg !important;
   font-weight: bold;
 }
 .winner {
-  font-weight: bold;
   color: $color-contrast !important;
-}
-
-// credits & other
-#footer {}
-
-// different types of modal windows
-#modal {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, .7);
-}
-#modal-window {
-  display: block;
-  //position: absolute;
-  margin: 0;
-  min-width: 320px;
-  width: 100%;
-  overflow: hidden;
-  background: $color-bgdark $bg-img;
-  margin: $basic*3 auto;
-  padding-bottom: $basic;
-  border-bottom: .2*$basic solid $color-light;
-  border-top: .2*$basic solid $color-light;
-  @media screen and (min-width: 721px) {    
-    width: $basic * 45;
-    min-width: $basic * 15;
-    border-top-left-radius: $basic;
-    border-top-right-radius: $basic;
-  }
-}
-#modal-heading {
-  text-align: center; 
-  padding: $basic * .4;
-  background-color: $color-light;
-  box-shadow: 0 0 $basic rgba(0,0,0,0.7);
-}
-#rules, #names-input, #settings-input, #alert {
-  margin: $basic/2;
-  padding: $basic/2;
-  outline: solid 1px $color-bgdark;
-  @media screen and (min-width: 721px) {
-    padding: $basic;
-    margin: $basic;
-  }
-}
-#totalscore {
-  width: $basic * 4;
-}
-#alert {
-  color: $color-contrast;
-  text-align: center;
-}
-#buttonset {
-  //width: 100%;
-  margin-right: $basic/4;
-  text-align: right;
-  @media screen and (min-width: 721px) {
-    margin-right: $basic/2 + $basic/4;
-  }
-}
-#end-game-btn {
-  border: 1px solid $color-contrast;
-  color: $color-contrast;
-}
-#cancel-btn {
-  border: 1px solid orange;
-  color: orange;
+  font-weight: bold;
 }
