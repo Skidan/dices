@@ -12,8 +12,7 @@ button,
 #current-score,
 #throw-label,
 #hold-label,
-//#rules,
-//#settings,
+.names,
 #play-game
 {font-size: $basic; font-family: $font-main; line-height: $basic * 1.5}
 
@@ -62,12 +61,13 @@ h1, h2, h3 {
   color: $color-bg;
 }
 h2 {
-  font-size: $basic * 2;
-  line-height: $basic * 3;
-}
-h3 {
   font-size: $basic * 1.5;
   line-height: $basic * 2.5;
+}
+h3 {
+  font-family: $font-main;
+  font-size: $basic * 1.25;
+  line-height: $basic * 2;
 }
 h4, h5, h6 {
   font-size: $basic * 1.5;
@@ -95,7 +95,7 @@ label {
 input {
   padding: 0 $basic/4;
   border: 1px solid $color-bgdark;
-  background: $color-bg;
+  background: whitesmoke;
   color: $color-bgdark;
   &:focus {
     border: 1px solid $color-light;

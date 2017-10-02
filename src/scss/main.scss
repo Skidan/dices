@@ -4,7 +4,6 @@
 // ADAPTIVE
 #wrapper {
   display: block;
-
   width: 100vw;
   height: 100vh;
   //outline: $test;
@@ -42,7 +41,7 @@
 }
 
 // HEADER
-#rules, #settings {
+#rules-btn, #settings-btn {
   display: inline-block;
   vertical-align: top;
   height: $basic * 2;
@@ -50,9 +49,15 @@
   margin: $basic / 2;
   background: url(../img/rules.png) center no-repeat;
   background-size: contain;
-  //outline: $test;
+  transition: transform .2s;
+  @media screen and (min-width: 721px) {
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
 }
-#settings {
+#settings-btn {
   background: url(../img/settings.png) center no-repeat;
   background-size: contain;
 }
@@ -75,7 +80,7 @@
     cursor: pointer;
     transition: transform .2s;
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
   }
 }
@@ -182,7 +187,79 @@
 }
 
 // MODAL WINDOW
+#modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, .5);
+}
+#modal-window {
+  display: block;
+  //position: absolute;
+  margin: 0;
+  min-width: 320px;
+  width: 100%;
+  overflow: hidden;
+  background: $color-bgdark $bg-img;
+  margin: $basic*3 auto;
+  padding-bottom: $basic;
+  border-bottom: .2*$basic solid $color-light;
+  border-top: .2*$basic solid $color-light;
+  color: $color-main;
+  @media screen and (min-width: 721px) {    
+    width: $basic * 45;
+    min-width: $basic * 15;
+    border-top-left-radius: $basic;
+    border-top-right-radius: $basic;
+    box-shadow: 0 $basic $basic * 8 $basic * 2 rgba(0,0,0,.4);
+  }
+}
+#modal-heading {
+  text-align: center;
+  //padding: $basic * .4;
+  background-color: $color-light;
+  box-shadow: 0 0 $basic rgba(0,0,0,0.7);
+}
+#rules, #names-input, #settings-input, #alert {
+  margin: $basic/2;
+  padding: $basic/2;
+  outline: solid 1px $color-bgdark;
 
+  @media screen and (min-width: 721px) {
+    padding: $basic;
+    margin: $basic;
+  }
+}
+.names {
+  display: block;
+  color: $color-main;
+}
+#totalscore {
+  width: $basic * 4;
+}
+#alert {
+  color: $color-contrast;
+  text-align: center;
+}
+#buttonset {
+  //width: 100%;
+  margin-right: $basic/4;
+  text-align: right;
+  @media screen and (min-width: 721px) {
+    margin-right: $basic/2 + $basic/4;
+  }
+}
+#end-game-btn {
+  border: 1px solid $color-contrast;
+  color: $color-contrast;
+}
+#cancel-btn {
+  border: 1px solid orange;
+  color: orange;
+}
 
 //MODIFIERS
 .hidden {
@@ -195,4 +272,7 @@
 .winner {
   color: $color-contrast !important;
   font-weight: bold;
+}
+.blur {
+  filter: blur(5px);
 }

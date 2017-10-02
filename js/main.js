@@ -18,6 +18,7 @@ function hide(x) {
 // EVENT LISTENERS
 function btnClose() {
   hide(modalDOM);
+  document.getElementById("wrapper").classList.remove("blur");
 }
 function btnCancel() {}
 
@@ -29,6 +30,7 @@ function initialSetup() {// Инициализирует начальное ок
   // добавляем ивент на модаль, аналогично кнопке "закрыть".
   // добавляем ивент на кнопку "настройки": 
   // добавляем ивент на кнопку "начать игру": 
+  document.getElementById("wrapper").classList.add("blur");
 }
 
 function readSettings() { // Читает настройки и сохраняет их в переменные
@@ -57,5 +59,5 @@ function readSettings() { // Читает настройки и сохраняе
   // закрытие окна с настройками
   modalDOM.style.display = "none";
 }
-
+initialSetup();
 btnCloseDOM.addEventListener("click", btnClose);

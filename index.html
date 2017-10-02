@@ -11,8 +11,8 @@
   <body>
     <div id="wrapper">
       <div id="header"><span id="lineout">Line output some dummy words or advices and a whole paragraph of bullshit</span>
-        <div id="rules"></div>
-        <div id="settings"></div>
+        <div id="rules-btn"></div>
+        <div id="settings-btn"></div>
       </div>
       <div id="main">
         <div id="play"><span id="play-game">Play Dices!</span></div>
@@ -40,7 +40,44 @@
       </div>
       <div id="footer"></div>
     </div>
-    <div id="modal"></div>
+    <div id="modal">
+      <div id="modal-window">
+        <h3 id="modal-heading">Modal window heading</h3>
+        <div id="rules">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta nulla,</p>
+        </div>
+        <div id="names-input"><span class="names">Input first player's name: </span>
+          <input type="text" size="12" name="firstplayername" placeholder="Player1" id="name-0"><span class="names">Input second player's name: </span>
+          <input type="text" size="12" name="secondplayername" placeholder="Player2" id="name-1">
+        </div>
+        <div id="settings-input">
+          <div id="dises-amount">
+            <div class="dices-options">
+              <input type="radio" name="dices-amount" value="one" checked="true" id="one-dice">
+              <label for="one-dice">one dice in play</label>
+            </div>
+            <div class="dices-options">
+              <input type="radio" name="dices-amount" value="two" id="two-dices">
+              <label for="two-dices">two dices in play</label>
+            </div>
+          </div>
+          <div id="total-scores">
+            <input type="number" value="100" max="9999" id="totalscore">
+            <label for="totalcsore">Input maximal score</label>
+          </div>
+        </div>
+        <div id="alert">
+          <p>All results will be reseted to null. Do You really want to end this game?</p>
+        </div>
+        <div id="buttonset">
+          <button type="button" id="close-btn">Close</button>
+          <button type="button" id="cancel-btn">Cancel</button>
+          <button type="button" id="save-btn">Save settings</button>
+          <button type="button" id="ok-btn">Ok    </button>
+          <button type="button" id="end-game-btn">End game anyway</button>
+        </div>
+      </div>
+    </div>
     <script src="js/main.js"></script>
   </body>
 </html>
