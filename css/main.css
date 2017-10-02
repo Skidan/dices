@@ -380,12 +380,10 @@ input:focus {
 
 #modal-window {
   display: block;
-  margin: 0;
   min-width: 320px;
   width: 100%;
   overflow: hidden;
   background: #c2c3c4 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAKCAMAAABL52QCAAAABlBMVEXCw8Tp6uwFw7MwAAAAF0lEQVR4AWNgYAQCCMEAIoAQgkA8/LIABOwAKWIaZEkAAAAASUVORK5CYII=);
-  margin: 48px auto;
   padding-bottom: 16px;
   border-bottom: 3.2px solid #127e9b;
   border-top: 3.2px solid #127e9b;

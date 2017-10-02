@@ -1,10 +1,10 @@
-// создаём переменные для DOM-объектов
+// DOM variables
 var modalDOM, btnCloseDOM, btnSettingsDOM;
 modalDOM = document.getElementById("modal");
 btnCloseDOM = document.getElementById("close-btn");
 btnSettingsDOM = document.getElementById("settings");
 
-// создаём переменные для хранения настроек и рассчётов
+// Other variables
 var dice, dicesAmount, maxScore;
 
 // COMMON FUNCTIONS
@@ -22,6 +22,8 @@ function btnClose() {
 }
 function btnCancel() {}
 
+
+// FUNCTIONS
 function initialSetup() {// Инициализирует начальное окно игры
   // отображаем все элементы, скрываем модаль, кнопку "стоп", панели игроков, текущий счёт, кубики, кнопку "бросить", "забрать".
   // меняем лайнаут на "модифицируйте начальные настройки или начните игру с настройками по-умалчанию"

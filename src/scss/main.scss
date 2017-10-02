@@ -198,13 +198,11 @@
 }
 #modal-window {
   display: block;
-  //position: absolute;
-  margin: 0;
   min-width: 320px;
   width: 100%;
   overflow: hidden;
   background: $color-bgdark $bg-img;
-  margin: $basic*3 auto;
+  //margin: $basic*3 auto;
   padding-bottom: $basic;
   border-bottom: .2*$basic solid $color-light;
   border-top: .2*$basic solid $color-light;
