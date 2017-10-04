@@ -17,11 +17,6 @@ button,
 {font-size: $basic; font-family: $font-main; line-height: $basic * 1.5}
 
 // COMMON STYLES
-
-html {
-  //height: 100%;
-  //width: 100%;
-}
 body {
   min-width: 320px;
   background: $color-bg $bg-img;
@@ -52,7 +47,7 @@ span {
 }
 h1, h2, h3 {
   display: block;
-  //margin: $basic * 3 auto;
+  margin: $basic * 3 auto;
   text-align: center;
   font-size: $basic * 3;
   line-height: $basic * 4;
