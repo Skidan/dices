@@ -187,12 +187,13 @@
 // MODAL WINDOW
 #modal {
   display: block;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(255, 255, 255, .5);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, .3);
+  background-attachment: fixed;
 }
 #modal-window {
   display: block;
@@ -200,14 +201,16 @@
   width: 100%;
   overflow: hidden;
   background: $color-bgdark $bg-img;
-  margin: $basic*3 auto;
   padding-bottom: $basic;
   border-bottom: .2*$basic solid $color-light;
-  border-top: .2*$basic solid $color-light;
   color: $color-main;
   @media screen and (min-width: 721px) {    
     width: $basic * 45;
     min-width: $basic * 15;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
     border-top-left-radius: $basic;
     border-top-right-radius: $basic;
     box-shadow: 0 $basic $basic * 8 $basic * 2 rgba(0,0,0,.4);
@@ -215,7 +218,7 @@
 }
 #modal-heading {
   text-align: center;
-  //padding: $basic * .4;
+  margin: 0;
   background-color: $color-light;
   box-shadow: 0 0 $basic rgba(0,0,0,0.7);
 }
