@@ -1,13 +1,15 @@
-// DOM variables
-var modalDOM, btnCloseDOM, btnSettingsDOM;
+// DOM VAR
+var htmlDOM, bodyDOM, modalDOM, btnCloseDOM, btnSettingsDOM;
+htmlDOM = document.getElementsByTagName("html")[0];
+bodyDOM = document.getElementsByTagName("body")[0];
 modalDOM = document.getElementById("modal");
 btnCloseDOM = document.getElementById("close-btn");
 btnSettingsDOM = document.getElementById("settings");
 
-// Other variables
+// VAR
 var dice, dicesAmount, maxScore;
 
-// COMMON FUNCTIONS
+// ACTIONS
 function show(x) {
   x.classList.remove("hidden");
 }
@@ -62,5 +64,6 @@ function readSettings() { // Читает настройки и сохраняе
   modalDOM.style.display = "none";
 }
 
+// ALGORITHM
 initialSetup();
 btnCloseDOM.addEventListener("click", btnClose);
