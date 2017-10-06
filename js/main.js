@@ -61,5 +61,6 @@ function readSettings() { // Читает настройки и сохраняе
   // закрытие окна с настройками
   modalDOM.style.display = "none";
 }
+
 initialSetup();
 btnCloseDOM.addEventListener("click", btnClose);
