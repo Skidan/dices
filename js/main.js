@@ -1,10 +1,12 @@
 // DOM VAR
-var htmlDOM, bodyDOM, modalDOM, btnCloseDOM, btnSettingsDOM;
+var htmlDOM, bodyDOM, modalDOM, btnCloseDOM, lineOutDOM, rulesBtnDOM, btnSettingsDOM;
 htmlDOM = document.getElementsByTagName("html")[0];
 bodyDOM = document.getElementsByTagName("body")[0];
+lineOutDOM = document.getElemlntById("lineout");
+btnSettingsDOM = document.getElementById("settings");
+rulesBtnDOM = document.getElemlntById("rules-btn");
 modalDOM = document.getElementById("modal");
 btnCloseDOM = document.getElementById("close-btn");
-btnSettingsDOM = document.getElementById("settings");
 
 // VAR
 var dice, dicesAmount, maxScore;
