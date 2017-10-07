@@ -1,12 +1,30 @@
 // DOM VAR
-var htmlDOM, bodyDOM, modalDOM, btnCloseDOM, lineOutDOM, rulesBtnDOM, btnSettingsDOM;
-htmlDOM = document.getElementsByTagName("html")[0];
-bodyDOM = document.getElementsByTagName("body")[0];
-lineOutDOM = document.getElemlntById("lineout");
-btnSettingsDOM = document.getElementById("settings");
-rulesBtnDOM = document.getElemlntById("rules-btn");
-modalDOM = document.getElementById("modal");
-btnCloseDOM = document.getElementById("close-btn");
+var domHtml, domBody, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domDice1, domCurrentScore, domThrow, domHold, domStop, domModal, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domCloseBtn, domCancelBtn, domSaveBtn, domOkBtn, domEndGameBtn;
+domHtml = document.getElementsByTagName("html")[0];
+domBody = document.getElementsByTagName("body")[0];
+domLineout = document.getElementById("lineout");
+domRulesBtn = document.getElementById("settings");
+domSettingsBtn = document.getElementById("rules-btn");
+domPlay = document.getElementById("play");
+domPlayTable = document.getElementById("playtable");
+//
+domDice1 = document.getElementById("dice-1");
+domCurrentScore = document.getElementById("current-score");
+domThrow = document.getElementById("throw-img");
+domHold = document.getElementById("hold-img");
+domStop = document.getElementById("stop-game");
+//
+domModal = document.getElementById("modal");
+domModalHeading = document.getElementById("modal-heading");
+domRules = document.getElementById("rules");
+domNamesInput = document.getElementById("names-input");
+domSettingsInput = document.getElementById("settings-input");
+domAlert = document.getElementById("alert");
+domCloseBtn = document.getElementById("close-btn");
+domCancelBtn = document.getElementById("cancel-btn");
+domSaveBtn = document.getElementById("save-btn");
+domOkBtn = document.getElementById("ok-btn");
+domEndGameBtn = document.getElementById("end-game-btn");
 
 // VAR
 var dice, dicesAmount, maxScore;
@@ -18,25 +36,43 @@ function show(x) {
 function hide(x) {
   x.classList.add("hidden");
 }
-
+function applyClass(dom,className) {
+  dom.classList.add(className);
+}
+function removeClass(dom,className) {
+  dom.classList.remove(className);
+}
 // EVENT LISTENERS
 function btnClose() {
-  hide(modalDOM);
+  hide(domModal);
   document.getElementById("wrapper").classList.remove("blur");
 }
 function btnCancel() {}
 
 
 // FUNCTIONS
+function hideModal() {}
+function showModal() {
+  document.getElementById("wrapper").classList.add("blur");
+}
 function initialSetup() {// Инициализирует начальное окно игры
   // отображаем все элементы, скрываем модаль, кнопку "стоп", панели игроков, текущий счёт, кубики, кнопку "бросить", "забрать".
   // меняем лайнаут на "модифицируйте начальные настройки или начните игру с настройками по-умалчанию"
+  removeClass(domHtml,"noscroll");
+  removeClass(domHtml,"hidden");
+  removeClass(domBody,"noscroll");
+  removeClass(domBody,"hidden");
+  removeClass(domPlay,"hidden");
+  removeClass(domPlayTable,"hidden");
+  removeClass(domModal,"hidden");
+  applyClass(domPlayTable,"hidden");
+  applyClass(domModal,"hidden");
+  domLineout.textContent = "Modify initial settings or start play with default ones.";
   // добавляем ивент на кнопку "правила": показываем модальное окно, в нём всё скрываем, потом отображаем заголовок "правила", отображаем сами правила и отображаем кнопку "Close".  
   // добавляем ивент на кнопку "Закрыть":
   // добавляем ивент на модаль, аналогично кнопке "закрыть".
   // добавляем ивент на кнопку "настройки": 
-  // добавляем ивент на кнопку "начать игру": 
-  document.getElementById("wrapper").classList.add("blur");
+  // добавляем ивент на кнопку "начать игру":
 }
 
 function readSettings() { // Читает настройки и сохраняет их в переменные
@@ -67,5 +103,6 @@ function readSettings() { // Читает настройки и сохраняе
 }
 
 // ALGORITHM
+
 initialSetup();
-btnCloseDOM.addEventListener("click", btnClose);
+domCloseBtn.addEventListener("click", btnClose);
