@@ -1,10 +1,11 @@
 // DOM VAR
-var domHtml, domBody, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domDice1, domCurrentScore, domThrow, domHold, domStop, domModal, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domCloseBtn, domCancelBtn, domSaveBtn, domOkBtn, domEndGameBtn;
+var domHtml, domBody, domWrapper, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domDice1, domCurrentScore, domThrow, domHold, domStop, domModal, domModalWindow, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domCloseBtn, domCancelBtn, domSaveBtn, domOkBtn, domEndGameBtn;
 domHtml = document.getElementsByTagName("html")[0];
 domBody = document.getElementsByTagName("body")[0];
+domWrapper = document.getElementById("wrapper");
 domLineout = document.getElementById("lineout");
-domRulesBtn = document.getElementById("settings");
-domSettingsBtn = document.getElementById("rules-btn");
+domRulesBtn = document.getElementById("rules-btn");
+domSettingsBtn = document.getElementById("settings-btn");
 domPlay = document.getElementById("play");
 domPlayTable = document.getElementById("playtable");
 //
@@ -15,6 +16,7 @@ domHold = document.getElementById("hold-img");
 domStop = document.getElementById("stop-game");
 //
 domModal = document.getElementById("modal");
+domModalWindow = document.getElementById("modal-window");
 domModalHeading = document.getElementById("modal-heading");
 domRules = document.getElementById("rules");
 domNamesInput = document.getElementById("names-input");
@@ -27,7 +29,7 @@ domOkBtn = document.getElementById("ok-btn");
 domEndGameBtn = document.getElementById("end-game-btn");
 
 // VAR
-var dice, dicesAmount, maxScore;
+var dice, dicesAmount, maxScore, gamePlaying;
 
 // ACTIONS
 function show(x) {
@@ -42,37 +44,76 @@ function applyClass(dom,className) {
 function removeClass(dom,className) {
   dom.classList.remove(className);
 }
+function hideModal() {
+  hide(domModal);
+  removeClass(domWrapper, "blur");
+  removeClass(domHtml, "noscroll");
+  removeClass(domBody, "noscroll");
+  removeClass(domModalWindow, "scroll");
+}
+function showModal() {
+  applyClass(domWrapper, "blur");
+  applyClass(domHtml, "noscroll");
+  applyClass(domBody, "noscroll");
+  show(domModal);
+  applyClass(domModalWindow, "scroll");  
+}
 // EVENT LISTENERS
 function btnClose() {
-  hide(domModal);
-  document.getElementById("wrapper").classList.remove("blur");
+  hide(domCloseBtn);
+  hideModal();
+}
+function btnCancel() {
+  hideModal();
 }
 function btnCancel() {}
+function btnSave() {}
 
+function startGame() {
+  gamePlaying = true;
+}
+function showRules() {
+  showModal();
+  show(domRules);
+  show(domCloseBtn);
+  domCloseBtn.addEventListener("click", btnClose);
+}
+function showSettings() {
+  // DOM manipulations
+  showModal();
+  show(domNamesInput);
+  show(domSettingsInput);
+  show(domCancelBtn);
+  show(domSaveBtn);
+  // event listeners
+  domCancelBtn.addEventListener("click", btnCancel);
+  domSaveBtn.addEventListener("click", btnSave);
+}
 
 // FUNCTIONS
-function hideModal() {}
-function showModal() {
-  document.getElementById("wrapper").classList.add("blur");
-}
-function initialSetup() {// Инициализирует начальное окно игры
-  // отображаем все элементы, скрываем модаль, кнопку "стоп", панели игроков, текущий счёт, кубики, кнопку "бросить", "забрать".
-  // меняем лайнаут на "модифицируйте начальные настройки или начните игру с настройками по-умалчанию"
-  removeClass(domHtml,"noscroll");
-  removeClass(domHtml,"hidden");
-  removeClass(domBody,"noscroll");
-  removeClass(domBody,"hidden");
-  removeClass(domPlay,"hidden");
-  removeClass(domPlayTable,"hidden");
-  removeClass(domModal,"hidden");
-  applyClass(domPlayTable,"hidden");
-  applyClass(domModal,"hidden");
+
+function initialSetup() {// Инициализирует начальное окно приложения
+  // correcting visibility of DOM objects
+  hideModal();
+  hide(domPlayTable);  
+  show(domPlay);
+  hide(domRules);
+  hide(domNamesInput);
+  hide(domSettingsInput);
+  hide(domAlert);
+  hide(domCloseBtn);
+  hide(domCancelBtn);
+  hide(domSaveBtn);
+  hide(domOkBtn);
+  hide(domEndGameBtn);
+  // changing information in help string
   domLineout.textContent = "Modify initial settings or start play with default ones.";
-  // добавляем ивент на кнопку "правила": показываем модальное окно, в нём всё скрываем, потом отображаем заголовок "правила", отображаем сами правила и отображаем кнопку "Close".  
-  // добавляем ивент на кнопку "Закрыть":
-  // добавляем ивент на модаль, аналогично кнопке "закрыть".
-  // добавляем ивент на кнопку "настройки": 
-  // добавляем ивент на кнопку "начать игру":
+  // adding event listeners
+  domRulesBtn.addEventListener("click", showRules);
+  domSettingsBtn.addEventListener("click", showSettings);
+  domPlay.addEventListener("click", startGame);
+  // variable initial coersion
+  gamePlaying = false;
 }
 
 function readSettings() { // Читает настройки и сохраняет их в переменные
@@ -105,4 +146,3 @@ function readSettings() { // Читает настройки и сохраняе
 // ALGORITHM
 
 initialSetup();
-domCloseBtn.addEventListener("click", btnClose);
