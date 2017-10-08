@@ -1,5 +1,5 @@
 // DOM VAR
-var domHtml, domBody, domWrapper, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domDice0, domDice1, domCurrentScore, domThrow, domHold, domStop, domModal, domModalWindow, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domCloseBtn, domCancelBtn, domSaveBtn, domOkBtn, domEndGameBtn;
+var domHtml, domBody, domWrapper, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domDicesContainer, domThrowContainer, domDice0, domDice1, domCurrentScore, domThrow, domHold, domStop, domModal, domModalWindow, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domCloseBtn, domCancelBtn, domSaveBtn, domOkBtn, domEndGameBtn;
 domHtml = document.getElementsByTagName("html")[0];
 domBody = document.getElementsByTagName("body")[0];
 domWrapper = document.getElementById("wrapper");
@@ -9,6 +9,8 @@ domSettingsBtn = document.getElementById("settings-btn");
 domPlay = document.getElementById("play");
 domPlayTable = document.getElementById("playtable");
 //
+domDicesContainer = document.getElementById("dices");
+domThrowContainer = document.getElementById("throw");
 domDice0 = document.getElementById("dice-0");
 domDice1 = document.getElementById("dice-1");
 domCurrentScore = document.getElementById("current-score");
@@ -30,7 +32,7 @@ domOkBtn = document.getElementById("ok-btn");
 domEndGameBtn = document.getElementById("end-game-btn");
 
 // VAR
-var dice, dicesAmount, maxScore, gamePlaying, playerNames;
+var dice, dicesAmount, maxScore, gamePlaying, playerNames, turn;
 
 // ACTIONS
 function show(x) {
@@ -64,9 +66,16 @@ function btnClose() {
   hide(domCloseBtn);
   hideModal();
 }
-function btnCancel() {
-  hide(domCancelBtn);
+function btnOk() {
+  hide(domOkBtn);
   hideModal();
+}
+function btnCancel() {
+  for (i=0; i<2; i++) {
+    document.getElementById("name-"+i).value = "";
+  }
+  document.getElementById("one-dice").checked = true;
+  document.getElementById("totalscore").value = 100;
 }
 function btnSave() {
   readSettings();
@@ -77,32 +86,29 @@ function btnSave() {
   hide(domSaveBtn);
 }
 
-function startGame() {
-  gamePlaying = true;
-}
+
 function showRules() {
+  domModalHeading.textContent = "Rules of the game";
   showModal();
   show(domRules);
   show(domCloseBtn);
   domCloseBtn.addEventListener("click", btnClose);
 }
 function showSettings() {
-  // DOM manipulations
-  playerNames = []
+  
+  domModalHeading.textContent = "Modify settings";
   showModal();
   show(domNamesInput);
   show(domSettingsInput);
   show(domCancelBtn);
-  show(domSaveBtn);
-  // event listeners
+  show(domOkBtn);
   domCancelBtn.addEventListener("click", btnCancel);
-  domSaveBtn.addEventListener("click", btnSave);
+  domOkBtn.addEventListener("click", btnOk);
 }
 
 // FUNCTIONS
 
-function initialSetup() {// Инициализирует начальное окно приложения
-  // correcting visibility of DOM objects
+function initialSetup() {
   hideModal();
   hide(domPlayTable);  
   show(domPlay);
@@ -115,33 +121,24 @@ function initialSetup() {// Инициализирует начальное ок
   hide(domSaveBtn);
   hide(domOkBtn);
   hide(domEndGameBtn);
-  // changing information in help string
   domLineout.textContent = "Modify initial settings or start play with default ones.";
-  // adding event listeners
   domRulesBtn.addEventListener("click", showRules);
   domSettingsBtn.addEventListener("click", showSettings);
   domPlay.addEventListener("click", startGame);
-  // variable initial coersion
+  playerNames = [];
   gamePlaying = false;
 }
 
-function readSettings() { // Читает настройки и сохраняет их в переменные
-  // Чтение имён игроков и их отображение на игровом поле
+function readSettings() {
   for (i = 0; i < 2; i++) {
     if (document.getElementById("name-" + i).value != "") {
-      // вывести текстконтент
       playerNames.push(document.getElementById("name-"+i).value);
       document.getElementById("player-"+i+"-name").textContent = playerNames[i];
-      console.log(playerNames[i]); // debugger
     } else {
-      // вывести плейсхолдер
       playerNames.push(document.getElementById("name-"+i).placeholder);
       document.getElementById("player-"+i+"-name").textContent = playerNames[i];
-      console.log(playerNames[i]); // debugger
     }
-  }
-  console.log(playerNames);
-  // определяем количество костей
+  } // output: playerNames[name1,name2]
   if (document.getElementById("one-dice").checked == true) {
     dice = [0];
     dicesAmount = dice.length;
@@ -150,11 +147,29 @@ function readSettings() { // Читает настройки и сохраняе
     dice = [0, 0];
     dicesAmount = dice.length;
     console.log(dicesAmount + " dices: "+dice);
-  }
-  // максимальный счёт
-  maxScore = document.getElementById("totalscore").value;
+  } // output: dice[0] or dice [0,0]
+  maxScore = document.getElementById("totalscore").value; //output maxScore = number
 }
 
+function startGame() {
+  gamePlaying = true;
+  turn = undefined;
+  readSettings();
+  hide(document.getElementById("current-score"));
+  hide(document.getElementById("hold"));
+  
+  applyClass(domDice0, "dicesturn");
+  applyClass(domDice1, "dicesturn");
+  applyClass(domDicesContainer, "fullsize");
+  applyClass(domThrowContainer, "fullsize");
+  domLineout.textContent = "Throw dices to play the first turn..."
+  hide(domPlay);
+  show(domPlayTable);
+  // проверить изначальные переменные на адекватность;
+  // выстроить ДОМ для проверки очерёдности первого хода;
+  // выстроить ДОМ для игры согласно настроек;
+  // присвоить активную позицию согласно розыгрыша очереди хода
+}
 // ALGORITHM
 
 initialSetup();

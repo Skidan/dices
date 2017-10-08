@@ -272,6 +272,10 @@ input:focus {
   color: #1f3948;
 }
 
+#dices-container, #controlset {
+  text-align: center;
+}
+
 #dices {
   display: inline-block;
   vertical-align: top;
@@ -485,4 +489,24 @@ input:focus {
 
 .scroll {
   overflow-y: auto;
+}
+
+.fullsize {
+  width: 100% !important;
+}
+
+.dicesturn {
+  margin: 16px !important;
+}
+
+@media screen and (min-width: 721px) and (max-width: 960px) {
+  .dicesturn {
+    margin: 16px 20% !important;
+  }
+}
+
+@media screen and (min-width: 961px) {
+  .dicesturn {
+    margin: 16px 21% !important;
+  }
 }
