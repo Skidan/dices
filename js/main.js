@@ -64,10 +64,17 @@ function btnClose() {
   hideModal();
 }
 function btnCancel() {
+  hide(domCancelBtn);
   hideModal();
 }
-function btnCancel() {}
-function btnSave() {}
+function btnSave() {
+  readSettings();
+  hideModal();
+  hide(domNamesInput);
+  hide(domSettingsInput);
+  hide(domCancelBtn);
+  hide(domSaveBtn);
+}
 
 function startGame() {
   gamePlaying = true;
@@ -139,8 +146,6 @@ function readSettings() { // Читает настройки и сохраняе
   }
   // максимальный счёт
   maxScore = document.getElementById("totalscore").value;
-  // закрытие окна с настройками
-  modalDOM.style.display = "none";
 }
 
 // ALGORITHM
