@@ -53,6 +53,15 @@ function hideModal() {
   removeClass(domHtml, "noscroll");
   removeClass(domBody, "noscroll");
   removeClass(domModalWindow, "scroll");
+  hide(domRules);
+  hide(domNamesInput);
+  hide(domSettingsInput);
+  hide(domAlert);
+  hide(domCloseBtn);
+  hide(domCancelBtn);
+  hide(domSaveBtn);
+  hide(domOkBtn);
+  hide(domEndGameBtn);
 }
 function showModal() {
   applyClass(domWrapper, "blur");
@@ -85,7 +94,13 @@ function btnSave() {
   hide(domCancelBtn);
   hide(domSaveBtn);
 }
-
+function btnEndGame() {
+  gamePlaying = false;
+  hide(domEndGameBtn);
+  hideModal();
+  initialSetup();
+  console.log(gamePlaying);
+}
 
 function showRules() {
   domModalHeading.textContent = "Rules of the game";
@@ -94,16 +109,30 @@ function showRules() {
   show(domCloseBtn);
   domCloseBtn.addEventListener("click", btnClose);
 }
-function showSettings() {
-  
-  domModalHeading.textContent = "Modify settings";
+
+function askWantEndGame() {
   showModal();
-  show(domNamesInput);
-  show(domSettingsInput);
-  show(domCancelBtn);
-  show(domOkBtn);
-  domCancelBtn.addEventListener("click", btnCancel);
-  domOkBtn.addEventListener("click", btnOk);
+  show(domAlert);
+  show(domCloseBtn);
+  show(domEndGameBtn);
+  domCloseBtn.addEventListener("click", btnClose);
+  domEndGameBtn.addEventListener("click", btnEndGame);
+}
+
+function showSettings() {
+  if (gamePlaying == false) {
+    domModalHeading.textContent = "Modify settings";
+    showModal();
+    show(domNamesInput);
+    show(domSettingsInput);
+    show(domCancelBtn);
+    show(domOkBtn);
+    domCancelBtn.addEventListener("click", btnCancel);
+    domOkBtn.addEventListener("click", btnOk);
+  } else {
+    askWantEndGame();
+  }
+  
 }
 
 // FUNCTIONS
@@ -151,13 +180,35 @@ function readSettings() {
   maxScore = document.getElementById("totalscore").value; //output maxScore = number
 }
 
+function throwDices() {
+  if (dice.length < 2) {
+    for (n=1; n<7; n++) {
+      removeClass(domDice0, "dice-"+n);
+    }    
+    dice[0] = Math.floor(Math.random()*6+1);
+    console.log(dice[0]);
+    domDice0.classList.add("dice-"+dice[0]);
+  }else{
+    for (n=1; n<7; n++) {
+      removeClass(domDice0, "dice-"+n);
+    }
+    for (n=1; n<7; n++) {
+      removeClass(domDice1, "dice-"+n);
+    }
+    dice[0] = Math.floor(Math.random()*6+1);
+    domDice0.classList.add("dice-"+dice[0]);
+    dice[1] = Math.floor(Math.random()*6+1);
+    domDice1.classList.add("dice-"+dice[1]);
+    console.log(dice[0] + ", " + dice[1]);
+  }
+}
+
 function startGame() {
   gamePlaying = true;
   turn = undefined;
   readSettings();
   hide(document.getElementById("current-score"));
-  hide(document.getElementById("hold"));
-  
+  hide(document.getElementById("hold"));  
   applyClass(domDice0, "dicesturn");
   applyClass(domDice1, "dicesturn");
   applyClass(domDicesContainer, "fullsize");
@@ -165,10 +216,10 @@ function startGame() {
   domLineout.textContent = "Throw dices to play the first turn..."
   hide(domPlay);
   show(domPlayTable);
-  // проверить изначальные переменные на адекватность;
-  // выстроить ДОМ для проверки очерёдности первого хода;
   // выстроить ДОМ для игры согласно настроек;
   // присвоить активную позицию согласно розыгрыша очереди хода
+  domThrow.addEventListener("click", throwDices);
+  domStop.addEventListener("click", askWantEndGame);
 }
 // ALGORITHM
 
