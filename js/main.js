@@ -1,5 +1,5 @@
 // DOM VAR
-var domHtml, domBody, domWrapper, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domDice1, domCurrentScore, domThrow, domHold, domStop, domModal, domModalWindow, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domCloseBtn, domCancelBtn, domSaveBtn, domOkBtn, domEndGameBtn;
+var domHtml, domBody, domWrapper, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domDice0, domDice1, domCurrentScore, domThrow, domHold, domStop, domModal, domModalWindow, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domCloseBtn, domCancelBtn, domSaveBtn, domOkBtn, domEndGameBtn;
 domHtml = document.getElementsByTagName("html")[0];
 domBody = document.getElementsByTagName("body")[0];
 domWrapper = document.getElementById("wrapper");
@@ -9,6 +9,7 @@ domSettingsBtn = document.getElementById("settings-btn");
 domPlay = document.getElementById("play");
 domPlayTable = document.getElementById("playtable");
 //
+domDice0 = document.getElementById("dice-0");
 domDice1 = document.getElementById("dice-1");
 domCurrentScore = document.getElementById("current-score");
 domThrow = document.getElementById("throw-img");
@@ -29,7 +30,7 @@ domOkBtn = document.getElementById("ok-btn");
 domEndGameBtn = document.getElementById("end-game-btn");
 
 // VAR
-var dice, dicesAmount, maxScore, gamePlaying;
+var dice, dicesAmount, maxScore, gamePlaying, playerNames;
 
 // ACTIONS
 function show(x) {
@@ -87,6 +88,7 @@ function showRules() {
 }
 function showSettings() {
   // DOM manipulations
+  playerNames = []
   showModal();
   show(domNamesInput);
   show(domSettingsInput);
@@ -126,14 +128,19 @@ function initialSetup() {// Инициализирует начальное ок
 function readSettings() { // Читает настройки и сохраняет их в переменные
   // Чтение имён игроков и их отображение на игровом поле
   for (i = 0; i < 2; i++) {
-    if (document.getElementById("name-" + i).textContent != "") {
+    if (document.getElementById("name-" + i).value != "") {
       // вывести текстконтент
-      document.getElementById("player-"+i+"-name").textContent = document.getElementById("name-"+i).textContent;
+      playerNames.push(document.getElementById("name-"+i).value);
+      document.getElementById("player-"+i+"-name").textContent = playerNames[i];
+      console.log(playerNames[i]); // debugger
     } else {
       // вывести плейсхолдер
-      document.getElementById("player-"+i+"-name").textContent = document.getElementById("name-"+i).placeholder;
+      playerNames.push(document.getElementById("name-"+i).placeholder);
+      document.getElementById("player-"+i+"-name").textContent = playerNames[i];
+      console.log(playerNames[i]); // debugger
     }
   }
+  console.log(playerNames);
   // определяем количество костей
   if (document.getElementById("one-dice").checked == true) {
     dice = [0];
@@ -142,7 +149,7 @@ function readSettings() { // Читает настройки и сохраняе
   } else {
     dice = [0, 0];
     dicesAmount = dice.length;
-    console.log(dicesAmount + "dices: "+dice);
+    console.log(dicesAmount + " dices: "+dice);
   }
   // максимальный счёт
   maxScore = document.getElementById("totalscore").value;
