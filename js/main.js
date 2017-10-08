@@ -1,5 +1,5 @@
 // DOM VAR
-var domHtml, domBody, domWrapper, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domDicesContainer, domThrowContainer, domDice0, domDice1, domCurrentScore, domThrow, domHold, domStop, domModal, domModalWindow, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domCloseBtn, domCancelBtn, domSaveBtn, domOkBtn, domEndGameBtn;
+var domHtml, domBody, domWrapper, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domDicesContainer, domThrowContainer, domDice0, domDice1, domCurrentScore, domThrow, domHold, domStop, domModal, domModalWindow, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domCloseBtn, domCancelBtn, domDefaultsBtn, domSaveBtn, domOkBtn, domEndGameBtn;
 domHtml = document.getElementsByTagName("html")[0];
 domBody = document.getElementsByTagName("body")[0];
 domWrapper = document.getElementById("wrapper");
@@ -27,6 +27,7 @@ domSettingsInput = document.getElementById("settings-input");
 domAlert = document.getElementById("alert");
 domCloseBtn = document.getElementById("close-btn");
 domCancelBtn = document.getElementById("cancel-btn");
+domDefaultsBtn = document.getElementById("defaults-btn");
 domSaveBtn = document.getElementById("save-btn");
 domOkBtn = document.getElementById("ok-btn");
 domEndGameBtn = document.getElementById("end-game-btn");
@@ -72,14 +73,15 @@ function showModal() {
 }
 // EVENT LISTENERS
 function btnClose() {
-  hide(domCloseBtn);
   hideModal();
 }
 function btnOk() {
-  hide(domOkBtn);
   hideModal();
 }
 function btnCancel() {
+  hideModal();
+}
+function btnDefaults() {
   for (i=0; i<2; i++) {
     document.getElementById("name-"+i).value = "";
   }
@@ -113,9 +115,9 @@ function showRules() {
 function askWantEndGame() {
   showModal();
   show(domAlert);
-  show(domCloseBtn);
+  show(domCancelBtn);
   show(domEndGameBtn);
-  domCloseBtn.addEventListener("click", btnClose);
+  domCancelBtn.addEventListener("click", btnCancel);
   domEndGameBtn.addEventListener("click", btnEndGame);
 }
 
@@ -125,9 +127,9 @@ function showSettings() {
     showModal();
     show(domNamesInput);
     show(domSettingsInput);
-    show(domCancelBtn);
+    show(domDefaultsBtn);
     show(domOkBtn);
-    domCancelBtn.addEventListener("click", btnCancel);
+    domDefaultsBtn.addEventListener("click", btnDefaults);
     domOkBtn.addEventListener("click", btnOk);
   } else {
     askWantEndGame();
@@ -147,6 +149,7 @@ function initialSetup() {
   hide(domAlert);
   hide(domCloseBtn);
   hide(domCancelBtn);
+  hide(domDefaultsBtn);
   hide(domSaveBtn);
   hide(domOkBtn);
   hide(domEndGameBtn);
