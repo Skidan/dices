@@ -195,6 +195,28 @@ function throwDices() {
   }
 }
 
+function throwTurn() {
+  for (n=1; n<7; n++) {
+    removeClass(domDice0, "dice-"+n);
+  }
+  for (n=1; n<7; n++) {
+    removeClass(domDice1, "dice-"+n);
+  }
+  var pl=[];
+  pl[0] = Math.floor(Math.random()*6+1);
+  domDice0.classList.add("dice-"+pl[0]);
+  pl[1] = Math.floor(Math.random()*6+1);
+  domDice1.classList.add("dice-"+pl[1]);
+  if (pl[0] > pl[1]) {
+    alert(playerNames[0] + " makes first move!");
+  } else if (pl[0] < pl[1]) {
+    alert(playerNames[1] + " makes first move!");
+  } else {
+    alert("It's a draw! :) Take one more try");
+    throwTurn;
+  }
+}
+
 function startGame() {
   gamePlaying = true;
   turn = undefined;
@@ -217,7 +239,8 @@ function startGame() {
   show(domPlayTable);
   // выстроить ДОМ для игры согласно настроек;
   // присвоить активную позицию согласно розыгрыша очереди хода
-  domThrow.addEventListener("click", throwDices);
+
+  domThrow.addEventListener("click", throwTurn);
   domStop.addEventListener("click", askWantEndGame);
 }
 // ALGORITHM
