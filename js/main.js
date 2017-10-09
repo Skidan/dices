@@ -213,7 +213,6 @@ function throwTurn() {
     alert(playerNames[1] + " makes first move!");
   } else {
     alert("It's a draw! :) Take one more try");
-    throwTurn();
   }
 }
 
