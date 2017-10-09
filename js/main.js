@@ -199,6 +199,12 @@ function startGame() {
   gamePlaying = true;
   turn = undefined;
   dice = undefined;
+  for (var n=1; n<7; n++) {
+    removeClass(domDice0, "dice-"+n);
+  }
+  for (n=1; n<7; n++) {
+    removeClass(domDice1, "dice-"+n);
+  }
   readSettings();
   hide(document.getElementById("current-score"));
   hide(document.getElementById("hold"));  
