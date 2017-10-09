@@ -1,3 +1,6 @@
+"use strict";
+/* eslint-env browser */
+/* eslint-disable no-console */
 // DOM VAR
 var domHtml, domBody, domWrapper, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domDicesContainer, domThrowContainer, domDice0, domDice1, domCurrentScore, domThrow, domHold, domStop, domModal, domModalWindow, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domCloseBtn, domCancelBtn, domDefaultsBtn, domSaveBtn, domOkBtn, domEndGameBtn;
 domHtml = document.getElementsByTagName("html")[0];
@@ -42,10 +45,10 @@ function show(x) {
 function hide(x) {
   x.classList.add("hidden");
 }
-function applyClass(dom,className) {
+function applyClass(dom, className) {
   dom.classList.add(className);
 }
-function removeClass(dom,className) {
+function removeClass(dom, className) {
   dom.classList.remove(className);
 }
 function hideModal() {
@@ -59,6 +62,7 @@ function hideModal() {
   hide(domSettingsInput);
   hide(domAlert);
   hide(domCloseBtn);
+  hide(domDefaultsBtn);
   hide(domCancelBtn);
   hide(domSaveBtn);
   hide(domOkBtn);
@@ -69,8 +73,9 @@ function showModal() {
   applyClass(domHtml, "noscroll");
   applyClass(domBody, "noscroll");
   show(domModal);
-  applyClass(domModalWindow, "scroll");  
+  applyClass(domModalWindow, "scroll");
 }
+
 // EVENT LISTENERS
 function btnClose() {
   hideModal();
@@ -82,7 +87,7 @@ function btnCancel() {
   hideModal();
 }
 function btnDefaults() {
-  for (i=0; i<2; i++) {
+  for (var i=0; i<2; i++) {
     document.getElementById("name-"+i).value = "";
   }
   document.getElementById("one-dice").checked = true;
@@ -91,17 +96,11 @@ function btnDefaults() {
 function btnSave() {
   readSettings();
   hideModal();
-  hide(domNamesInput);
-  hide(domSettingsInput);
-  hide(domCancelBtn);
-  hide(domSaveBtn);
 }
 function btnEndGame() {
   gamePlaying = false;
-  hide(domEndGameBtn);
   hideModal();
   initialSetup();
-  console.log(gamePlaying);
 }
 
 function showRules() {
@@ -143,16 +142,6 @@ function initialSetup() {
   hideModal();
   hide(domPlayTable);  
   show(domPlay);
-  hide(domRules);
-  hide(domNamesInput);
-  hide(domSettingsInput);
-  hide(domAlert);
-  hide(domCloseBtn);
-  hide(domCancelBtn);
-  hide(domDefaultsBtn);
-  hide(domSaveBtn);
-  hide(domOkBtn);
-  hide(domEndGameBtn);
   domLineout.textContent = "Modify initial settings or start play with default ones.";
   domRulesBtn.addEventListener("click", showRules);
   domSettingsBtn.addEventListener("click", showSettings);
@@ -162,7 +151,7 @@ function initialSetup() {
 }
 
 function readSettings() {
-  for (i = 0; i < 2; i++) {
+  for (var i = 0; i < 2; i++) {
     if (document.getElementById("name-" + i).value != "") {
       playerNames.push(document.getElementById("name-"+i).value);
       document.getElementById("player-"+i+"-name").textContent = playerNames[i];
@@ -185,7 +174,7 @@ function readSettings() {
 
 function throwDices() {
   if (dice.length < 2) {
-    for (n=1; n<7; n++) {
+    for (var n=1; n<7; n++) {
       removeClass(domDice0, "dice-"+n);
     }    
     dice[0] = Math.floor(Math.random()*6+1);
