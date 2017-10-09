@@ -198,6 +198,7 @@ function throwDices() {
 function startGame() {
   gamePlaying = true;
   turn = undefined;
+  dice = undefined;
   readSettings();
   hide(document.getElementById("current-score"));
   hide(document.getElementById("hold"));  
