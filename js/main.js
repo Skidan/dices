@@ -269,10 +269,23 @@ function throwDices() {
       }
       diceLast[0] = dice[0];
       dice[0] = Math.floor(Math.random()*6+1);
-      console.log(dice[0]);
-      domDice0.classList.add("dice-"+dice[0]);
-      currentScore += dice[0];
-      domCurrentScore.textContent = currentScore;
+      switch (dice[0]) {
+        case 1:
+          toggleActive();
+          break;
+        case 6:
+          if (diceLast == 6) {
+            wholeScore[active] = 0;
+            toggleActive;
+          }
+          break;
+        default: 
+          domDice0.classList.add("dice-"+dice[0]);
+          currentScore += dice[0];
+          domCurrentScore.textContent = currentScore;
+          break;
+      }
+      
     }else{ // TWO DICES
       diceLast = [0, 0];
       for (n=1; n<7; n++) {
