@@ -149,6 +149,7 @@ function inform(string) {
   show(domEndGameBtn);
   domInform.textContent = string;
   domStartGameBtn.addEventListener("click", btnStartGame);
+  domEndGameBtn.addEventListener("click", btnEndGame);
   
 }
 
