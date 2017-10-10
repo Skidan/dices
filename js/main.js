@@ -289,6 +289,8 @@ function startGame() {
   applyClass(domDice1, "dicesturn");
   applyClass(domDicesContainer, "fullsize");
   applyClass(domThrowContainer, "fullsize");
+  show(domDice0);
+  show(domDice1);
   domLineout.textContent = "Throw dices to play the first turn..."
   hide(domPlay);
   show(domPlayTable);
