@@ -2,7 +2,7 @@
 /* eslint-env browser */
 /* eslint-disable no-console */
 // DOM VAR
-var domHtml, domBody, domWrapper, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domPlayer1Score, domPlayer2Score, domDicesContainer, domThrowContainer, domDice0, domDice1, domCurrentScore, domThrow, domHold, domStop, domPlayer0, domPlayer1, domModal, domModalWindow, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domInform, domCloseBtn, domCancelBtn, domDefaultsBtn, domGotItBtn, domOkBtn, domEndGameBtn, domStartGameBtn;
+var domHtml, domBody, domWrapper, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domPlayer1Score, domPlayer2Score, domPlayer1Name, domPlayer2Name, domDicesContainer, domThrowContainer, domDice0, domDice1, domCurrentScore, domThrow, domHold, domStop, domPlayer0, domPlayer1, domModal, domModalWindow, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domInform, domCloseBtn, domCancelBtn, domDefaultsBtn, domGotItBtn, domOkBtn, domEndGameBtn, domStartGameBtn;
 domHtml = document.getElementsByTagName("html")[0];
 domBody = document.getElementsByTagName("body")[0];
 domWrapper = document.getElementById("wrapper");
@@ -14,6 +14,8 @@ domPlayTable = document.getElementById("playtable");
 //
 domPlayer1Score = document.getElementById("player-0-score");
 domPlayer2Score = document.getElementById("player-1-score");
+domPlayer1Name = document.getElementById("player-0-name");
+domPlayer2Name = document.getElementById("player-1-name");
 domDicesContainer = document.getElementById("dices");
 domThrowContainer = document.getElementById("throw");
 domDice0 = document.getElementById("dice-0");
@@ -203,6 +205,13 @@ function hold() {
     domPlayer2Score.textContent = wholeScore[1];
   }
   if (wholeScore[active] > maxScore) {
+    if (active == 0) {
+      applyClass(domPlayer1Score, "winner");
+      applyClass(domPlayer1Name, "winner");
+    } else {
+      applyClass(domPlayer2Score, "winner");
+      applyClass(domPlayer2Name, "winner");
+    }
     alert(playerNames[active] + " won the game! Congrats!");
     gamePlaying = false;
   } else {
@@ -247,7 +256,7 @@ function readSettings() {
 }
 
 function throwDices() {
-  if (dice.length < 2) {
+  if (dice.length < 2) { // ONE DICE
     diceLast = [0];
     for (var n=1; n<7; n++) {
       removeClass(domDice0, "dice-"+n);
@@ -258,7 +267,7 @@ function throwDices() {
     domDice0.classList.add("dice-"+dice[0]);
     currentScore += dice[0];
     domCurrentScore.textContent = currentScore;
-  }else{
+  }else{ // TWO DICES
     diceLast = [0, 0];
     for (n=1; n<7; n++) {
       removeClass(domDice0, "dice-"+n);
@@ -323,6 +332,12 @@ function startGame() {
   applyClass(domDice1, "dicesturn");
   applyClass(domDicesContainer, "fullsize");
   applyClass(domThrowContainer, "fullsize");
+  removeClass(domPlayer1Score, "winner");
+  removeClass(domPlayer1Name, "winner");
+  removeClass(domPlayer2Score, "winner");
+  removeClass(domPlayer2Name, "winner");
+  removeClass(domPlayer0, "active");
+  removeClass(domPlayer1, "active");
   show(domDice0);
   show(domDice1);
   domLineout.textContent = "Throw dices to play the first turn..."
