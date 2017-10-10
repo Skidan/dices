@@ -209,6 +209,11 @@ function toggleActive() {
     applyClass(domPlayer0, "active");
     removeClass(domPlayer1, "active");
   }
+  if (dicesAmount == 1) {
+    diceLast = [0];
+  }else{
+    diceLast = [0, 0];
+  }
   currentScore = 0;
   domCurrentScore.textContent = currentScore;
 }
