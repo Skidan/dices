@@ -196,13 +196,13 @@ function throwDices() {
 }
 
 function throwTurn() {
-  for (var n=1; n<7; n++) {
-    removeClass(domDice0, "dice-"+n);
-  }
-  for (n=1; n<7; n++) {
-    removeClass(domDice1, "dice-"+n);
-  }
   do {
+    for (var n=1; n<7; n++) {
+      removeClass(domDice0, "dice-"+n);
+    }
+    for (n=1; n<7; n++) {
+      removeClass(domDice1, "dice-"+n);
+    }
     var pl = [];
     pl[0] = Math.floor(Math.random()*6+1);
     domDice0.classList.add("dice-"+pl[0]);
@@ -216,7 +216,8 @@ function throwTurn() {
       console.log("Turn = player 1");
     }
     console.log("Iteration");
-  } while (pl[0] == pl[1]);  
+  } while (pl[0] == pl[1]);
+  console.log("End of iteration");
 }
 
 function startGame() {
