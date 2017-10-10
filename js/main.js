@@ -201,7 +201,7 @@ function toggleActive() {
 }
 
 function hold() {
-  while (gamePlaying) {
+  if (gamePlaying) {
     wholeScore[active] += currentScore;
     if (active == 0) {
       domPlayer1Score.textContent = wholeScore[0];
@@ -261,7 +261,7 @@ function readSettings() {
 }
 
 function throwDices() {
-  while (gamePlaying) {
+  if (gamePlaying) {
     if (dice.length < 2) { // ONE DICE
       diceLast = [0];
       for (var n=1; n<7; n++) {
