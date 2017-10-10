@@ -101,7 +101,19 @@ function btnDefaults() {
 function btnStartGame() {
   domInform.textContent = "Info";
   hideModal();
-  
+  show(document.getElementById("current-score"));
+  show(document.getElementById("hold"));  
+  removeClass(domDice0, "dicesturn");
+  removeClass(domDice1, "dicesturn");
+  removeClass(domDicesContainer, "fullsize");
+  removeClass(domThrowContainer, "fullsize");
+  for (n=1; n<7; n++) {
+    removeClass(domDice0, "dice-"+n);
+  }
+  for (n=1; n<7; n++) {
+    removeClass(domDice1, "dice-"+n);
+  }
+  gamePlay();
 }
 
 function btnEndGame() {
@@ -150,7 +162,6 @@ function inform(string) {
   domInform.textContent = string;
   domStartGameBtn.addEventListener("click", btnStartGame);
   domEndGameBtn.addEventListener("click", btnEndGame);
-  
 }
 
 // FUNCTIONS
@@ -263,6 +274,11 @@ function startGame() {
   domThrow.addEventListener("click", throwTurn);
   domStop.addEventListener("click", askWantEndGame);
 }
-// ALGORITHM
+
+// GAMEPLAY ALGORYTHM
+function gamePlay() {
+  alert("And the play begins");
+}
+
 
 initialSetup();
