@@ -107,7 +107,7 @@ function btnStartGame() {
   removeClass(domDice1, "dicesturn");
   removeClass(domDicesContainer, "fullsize");
   removeClass(domThrowContainer, "fullsize");
-  for (n=1; n<7; n++) {
+  for (var n=1; n<7; n++) {
     removeClass(domDice0, "dice-"+n);
   }
   for (n=1; n<7; n++) {
