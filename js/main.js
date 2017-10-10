@@ -2,7 +2,7 @@
 /* eslint-env browser */
 /* eslint-disable no-console */
 // DOM VAR
-var domHtml, domBody, domWrapper, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domDicesContainer, domThrowContainer, domDice0, domDice1, domCurrentScore, domThrow, domHold, domStop, domModal, domModalWindow, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domInform, domCloseBtn, domCancelBtn, domDefaultsBtn, domGotItBtn, domOkBtn, domEndGameBtn;
+var domHtml, domBody, domWrapper, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domDicesContainer, domThrowContainer, domDice0, domDice1, domCurrentScore, domThrow, domHold, domStop, domModal, domModalWindow, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domInform, domCloseBtn, domCancelBtn, domDefaultsBtn, domGotItBtn, domOkBtn, domEndGameBtn, domStartGameBtn;
 domHtml = document.getElementsByTagName("html")[0];
 domBody = document.getElementsByTagName("body")[0];
 domWrapper = document.getElementById("wrapper");
@@ -35,6 +35,7 @@ domDefaultsBtn = document.getElementById("defaults-btn");
 domGotItBtn = document.getElementById("gotit-btn");
 domOkBtn = document.getElementById("ok-btn");
 domEndGameBtn = document.getElementById("end-game-btn");
+domStartGameBtn = document.getElementById("start-game-btn");
 
 // VAR
 var dice, dicesAmount, maxScore, gamePlaying, playerNames, turn;
@@ -69,6 +70,7 @@ function hideModal() {
   hide(domGotItBtn);
   hide(domOkBtn);
   hide(domEndGameBtn);
+  hide(domStartGameBtn);
 }
 function showModal() {
   applyClass(domWrapper, "blur");
@@ -96,9 +98,10 @@ function btnDefaults() {
   document.getElementById("totalscore").value = 100;
 }
 
-function btnGotIt() {
+function btnStartGame() {
   domInform.textContent = "Info";
   hideModal();
+  
 }
 
 function btnEndGame() {
@@ -142,9 +145,11 @@ function showSettings() {
 function inform(string) {
   showModal();
   show(domInform);
-  show(domGotItBtn);
+  show(domStartGameBtn);
+  show(domEndGameBtn);
   domInform.textContent = string;
-  domGotItBtn.addEventListener("click", btnGotIt);
+  domStartGameBtn.addEventListener("click", btnStartGame);
+  
 }
 
 // FUNCTIONS
