@@ -222,7 +222,7 @@ function hold() {
     } else {
       domPlayer2Score.textContent = wholeScore[1];
     }
-    if (wholeScore[active] > maxScore) {
+    if (wholeScore[active] >= maxScore) {
       if (active == 0) {
         applyClass(domPlayer1Score, "winner");
         applyClass(domPlayer1Name, "winner");
@@ -282,16 +282,21 @@ function throwDices() {
       dice[0] = Math.floor(Math.random()*6+1);      
       domDice0.classList.add("dice-"+dice[0]);
       if (dice[0] == 1) {
-        console.log("Dice show "+dice[0]+"! TOGGLING");
+        alert("Dice show "+dice[0]+"! TOGGLING");
         toggleActive();
       } else if (dice[0] == 6 && diceLast[0] == 6) {
         wholeScore[active] = 0;
+        alert("Dice show "+dice[0]+" twice! \nAll your pionts reseted to 0. TOGGLING");
+        if (active == 0) {
+          domPlayer1Score.textContent = 0;
+        } else {
+          domPlayer2Score.textContent = 0;
+        }
         toggleActive();
       } else {
         currentScore += dice[0];
         domCurrentScore.textContent = currentScore;
       }
-      
     }else{ // TWO DICES
       clearDices();
       diceLast[0] = dice[0];
@@ -300,8 +305,22 @@ function throwDices() {
       diceLast[1] = dice[1];
       dice[1] = Math.floor(Math.random()*6+1);
       domDice1.classList.add("dice-"+dice[1]);
-      currentScore += dice[0] + dice[1];
-      domCurrentScore.textContent = currentScore;
+      if (dice[0] + dice[1] == 2) {
+        alert("Dice show 1+1! TOGGLING");
+        toggleActive();
+      } else if (dice[0] + dice[1] == 12 && diceLast[0]+diceLast[1] == 12) {
+        wholeScore[active] = 0;
+        alert("Dice show 6+6 twice! \nAll your pionts reseted to 0. TOGGLING");
+        if (active == 0) {
+          domPlayer1Score.textContent = 0;
+        } else {
+          domPlayer2Score.textContent = 0;
+        }
+        toggleActive();
+      } else {
+        currentScore += dice[0] + dice[1];
+        domCurrentScore.textContent = currentScore;
+      }
     }
   }
 }
