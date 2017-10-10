@@ -280,7 +280,11 @@ function startGame() {
 // GAMEPLAY ALGORYTHM
 function gamePlay() {
   //alert("And the play begins");
-  console.log("Dices amount: " + dicesAmount + "\nFinal score limit: " + maxScore + "\nFirst player's name: " + playerNames[0] + "\nSecond player's name: " + playerNames[1] + "\n" + playerNames[0] + "\'s score: " + wholeScore[0] + "\n" + playerNames[1] + "\'s score: " + wholeScore[1] + "\nCurrent score: " + currentScore);
+  console.log(playerNames);
+  console.log("Dices: " + dicesAmount);
+  console.log("Scores: " + wholeScore);
+  console.log("Score limit: " + maxScore);
+  //console.log("Dices amount: " + dicesAmount + "\nFinal score limit: " + maxScore + "\nFirst player's name: " + playerNames[0] + "\nSecond player's name: " + playerNames[1] + "\n" + playerNames[0] + "\'s score: " + wholeScore[0] + "\n" + playerNames[1] + "\'s score: " + wholeScore[1] + "\nCurrent score: " + currentScore);
 }
 
 
