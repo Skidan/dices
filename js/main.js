@@ -210,9 +210,12 @@ function throwTurn() {
     domDice1.classList.add("dice-"+pl[1]);
     if (pl[0] > pl[1]) {
       turn = 0;
+      console.log("Turn = player 1");
     } else if (pl[0] < pl[1]) {
-      turn = 1
+      turn = 1;
+      console.log("Turn = player 1");
     }
+    console.log("Iteration");
   } while (pl[0] == pl[1]);  
 }
 
