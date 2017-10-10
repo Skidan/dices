@@ -185,15 +185,22 @@ function toggleActive() {
   if (active == 0) {
     active = 1;
     applyClass(domPlayer1, "active");
+    removeClass(domPlayer0, "active");
   } else {
     active = 0;
     applyClass(domPlayer0, "active");
+    removeClass(domPlayer1, "active");
   }
   currentScore = 0;
 }
 
 function hold() {
   wholeScore[active] += currentScore;
+  if (active == 0) {
+    domPlayer1Score.textContent = wholeScore[0];
+  } else {
+    domPlayer2Score.textContent = wholeScore[2];
+  }
   if (wholeScore[active] > maxScore) {
     alert(playerNames[active] + " won the game! Congrats!");
     gamePlaying = false;
@@ -292,7 +299,15 @@ function throwTurn() {
     console.log("Iteration");
   } while (pl[0] == pl[1]);
   inform("It's " + playerNames[active] + "'s turn. \nStill want to play?");
-  
+  if (active == 0) {
+    active = 1;
+    applyClass(domPlayer1, "active");
+    removeClass(domPlayer0, "active");
+  } else {
+    active = 0;
+    applyClass(domPlayer0, "active");
+    removeClass(domPlayer1, "active");
+  }
 }
 
 function startGame() {
