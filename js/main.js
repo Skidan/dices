@@ -184,10 +184,10 @@ function inform(string) {
 function toggleActive() {
   if (active == 0) {
     active = 1;
-    applyClass("active", domPlayer1);
+    applyClass(domPlayer1, "active");
   } else {
     active = 0;
-    applyClass("active", domPlayer0);
+    applyClass(domPlayer0, "active");
   }
   currentScore = 0;
 }
