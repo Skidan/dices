@@ -144,6 +144,15 @@ function btnEndGame() {
   initialSetup();
 }
 
+function clearDices() {
+  for (var n=1; n<7; n++) {
+    removeClass(domDice0, "dice-"+n);
+  }
+  for (n=1; n<7; n++) {
+    removeClass(domDice1, "dice-"+n);
+  }
+}
+
 function showRules() {
   domModalHeading.textContent = "Rules of the game";
   showModal();
@@ -201,6 +210,7 @@ function toggleActive() {
 }
 
 function hold() {
+  clearDices();
   if (gamePlaying) {
     wholeScore[active] += currentScore;
     if (active == 0) {
@@ -264,9 +274,7 @@ function throwDices() {
   if (gamePlaying) {
     if (dice.length < 2) { // ONE DICE
       diceLast = [0];
-      for (var n=1; n<7; n++) {
-        removeClass(domDice0, "dice-"+n);
-      }
+      clearDices();
       diceLast[0] = dice[0];
       dice[0] = Math.floor(Math.random()*6+1);
       
@@ -277,12 +285,7 @@ function throwDices() {
       
     }else{ // TWO DICES
       diceLast = [0, 0];
-      for (n=1; n<7; n++) {
-        removeClass(domDice0, "dice-"+n);
-      }
-      for (n=1; n<7; n++) {
-        removeClass(domDice1, "dice-"+n);
-      }
+      clearDices();
       diceLast[0] = dice[0];
       dice[0] = Math.floor(Math.random()*6+1);
       domDice0.classList.add("dice-"+dice[0]);
@@ -297,12 +300,7 @@ function throwDices() {
 
 function throwTurn() {
   do {
-    for (var n=1; n<7; n++) {
-      removeClass(domDice0, "dice-"+n);
-    }
-    for (n=1; n<7; n++) {
-      removeClass(domDice1, "dice-"+n);
-    }
+    clearDices();
     var pl = [];
     pl[0] = Math.floor(Math.random()*6+1);
     domDice0.classList.add("dice-"+pl[0]);
@@ -328,12 +326,7 @@ function startGame() {
   gamePlaying = true;
   active = undefined;
   dice = undefined;
-  for (var n=1; n<7; n++) {
-    removeClass(domDice0, "dice-"+n);
-  }
-  for (n=1; n<7; n++) {
-    removeClass(domDice1, "dice-"+n);
-  }
+  clearDices();
   readSettings();
   hide(document.getElementById("current-score"));
   hide(document.getElementById("hold"));  
