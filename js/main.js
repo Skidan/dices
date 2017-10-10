@@ -40,7 +40,7 @@ domEndGameBtn = document.getElementById("end-game-btn");
 domStartGameBtn = document.getElementById("start-game-btn");
 
 // VAR
-var dice, dicesAmount, maxScore, gamePlaying, playerNames, turn, wholeScore, currentScore;
+var dice, diceLast, dicesAmount, maxScore, gamePlaying, playerNames, turn, wholeScore, currentScore;
 
 // ACTIONS
 function show(x) {
@@ -101,6 +101,9 @@ function btnDefaults() {
 }
 
 function btnStartGame() {
+  wholeScore = [0, 0];
+  currentScore = 0;
+  
   domInform.textContent = "Info";
   hideModal();
   show(document.getElementById("current-score"));
@@ -115,6 +118,16 @@ function btnStartGame() {
   for (n=1; n<7; n++) {
     removeClass(domDice1, "dice-"+n);
   }
+  if (dicesAmount == 1) {
+    show(domDice0);
+    hide(domDice1);
+  }else{
+    show(domDice0);
+    show(domDice1);
+  }
+  domPlayer1Score.textContent = wholeScore[0];
+  domPlayer2Score.textContent = wholeScore[1];
+  domCurrentScore.textContent = currentScore;
   gamePlay();
 }
 
@@ -204,24 +217,32 @@ function readSettings() {
 
 function throwDices() {
   if (dice.length < 2) {
+    diceLast = [0];
     for (var n=1; n<7; n++) {
       removeClass(domDice0, "dice-"+n);
-    }    
+    }
+    diceLast[0] = dice[0];
     dice[0] = Math.floor(Math.random()*6+1);
     console.log(dice[0]);
     domDice0.classList.add("dice-"+dice[0]);
+    currentScore += dice[0];
+    domCurrentScore.textContent = currentScore;
   }else{
+    diceLast = [0, 0];
     for (n=1; n<7; n++) {
       removeClass(domDice0, "dice-"+n);
     }
     for (n=1; n<7; n++) {
       removeClass(domDice1, "dice-"+n);
     }
+    diceLast[0] = dice[0];
     dice[0] = Math.floor(Math.random()*6+1);
     domDice0.classList.add("dice-"+dice[0]);
+    diceLast[1] = dice[1];
     dice[1] = Math.floor(Math.random()*6+1);
     domDice1.classList.add("dice-"+dice[1]);
-    console.log(dice[0] + ", " + dice[1]);
+    currentScore += dice[0] + dice[1];
+    domCurrentScore.textContent = currentScore;
   }
 }
 
@@ -276,18 +297,13 @@ function startGame() {
   domThrow.addEventListener("click", throwTurn);
   domStop.addEventListener("click", askWantEndGame);
   
-  wholeScore = [0, 0];
-  currentScore = 0;
+  
 }
 
 // GAMEPLAY ALGORYTHM
 function gamePlay() {
-  //alert("And the play begins");
-//  console.log(playerNames);
-//  console.log("Dices: " + dicesAmount);
-//  console.log("Scores: " + wholeScore);
-//  console.log("Score limit: " + maxScore);
   console.log("Dices amount: " + dicesAmount + "\nFinal score limit: " + maxScore + "\nFirst player's name: " + playerNames[0] + "\nSecond player's name: " + playerNames[1] + "\n" + playerNames[0] + "\'s score: " + wholeScore[0] + "\n" + playerNames[1] + "\'s score: " + wholeScore[1] + "\nCurrent score: " + currentScore);
+  
 }
 
 
