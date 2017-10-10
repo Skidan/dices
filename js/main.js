@@ -2,7 +2,7 @@
 /* eslint-env browser */
 /* eslint-disable no-console */
 // DOM VAR
-var domHtml, domBody, domWrapper, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domPlayer1Score, domPlayer2Score, domPlayer1Name, domPlayer2Name, domDicesContainer, domThrowContainer, domDice0, domDice1, domCurrentScore, domThrow, domHold, domStop, domPlayer0, domPlayer1, domModal, domModalWindow, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domInform, domCloseBtn, domCancelBtn, domDefaultsBtn, domGotItBtn, domOkBtn, domEndGameBtn, domStartGameBtn;
+var domHtml, domBody, domWrapper, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domPlayer1Score, domPlayer2Score, domPlayer1Name, domPlayer2Name, domDicesContainer, domThrowContainer, domDice0, domDice1, domCurrentScore, domThrow, domHold, domStop, domPlayer0, domPlayer1, domModal, domModalWindow, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domInform, domCloseBtn, domCancelBtn, domDefaultsBtn, domOkBtn, domEndGameBtn, domStartGameBtn;
 domHtml = document.getElementsByTagName("html")[0];
 domBody = document.getElementsByTagName("body")[0];
 domWrapper = document.getElementById("wrapper");
@@ -38,7 +38,6 @@ domInform = document.getElementById("inform");
 domCloseBtn = document.getElementById("close-btn");
 domCancelBtn = document.getElementById("cancel-btn");
 domDefaultsBtn = document.getElementById("defaults-btn");
-domGotItBtn = document.getElementById("gotit-btn");
 domOkBtn = document.getElementById("ok-btn");
 domEndGameBtn = document.getElementById("end-game-btn");
 domStartGameBtn = document.getElementById("start-game-btn");
@@ -46,19 +45,22 @@ domStartGameBtn = document.getElementById("start-game-btn");
 // VAR
 var dice, diceLast, dicesAmount, maxScore, gamePlaying, playerNames, active, wholeScore, currentScore;
 
-// ACTIONS
 function show(x) {
   x.classList.remove("hidden");
 }
+
 function hide(x) {
   x.classList.add("hidden");
 }
+
 function applyClass(dom, className) {
   dom.classList.add(className);
 }
+
 function removeClass(dom, className) {
   dom.classList.remove(className);
 }
+
 function hideModal() {
   hide(domModal);
   removeClass(domWrapper, "blur");
@@ -73,11 +75,11 @@ function hideModal() {
   hide(domCloseBtn);
   hide(domDefaultsBtn);
   hide(domCancelBtn);
-  hide(domGotItBtn);
   hide(domOkBtn);
   hide(domEndGameBtn);
   hide(domStartGameBtn);
 }
+
 function showModal() {
   applyClass(domWrapper, "blur");
   applyClass(domHtml, "noscroll");
@@ -86,7 +88,6 @@ function showModal() {
   applyClass(domModalWindow, "scroll");
 }
 
-// EVENT LISTENERS
 function btnClose() {
   hideModal();
 }
@@ -107,7 +108,7 @@ function btnDefaults() {
 function btnStartGame() {
   wholeScore = [0, 0];
   currentScore = 0;
-  
+  diceLast = [0, 0];
   domInform.textContent = "Info";
   hideModal();
   show(document.getElementById("current-score"));
@@ -125,12 +126,10 @@ function btnStartGame() {
   if (dicesAmount == 1) {
     show(domDice0);
     hide(domDice1);
-    diceLast = [0];
     dice = [0];
   }else{
     show(domDice0);
     show(domDice1);
-    diceLast = [0, 0];
     dice = [0, 0];
   }
   domPlayer1Score.textContent = wholeScore[0];
@@ -209,11 +208,7 @@ function toggleActive() {
     applyClass(domPlayer0, "active");
     removeClass(domPlayer1, "active");
   }
-  if (dicesAmount == 1) {
-    diceLast = [0];
-  }else{
-    diceLast = [0, 0];
-  }
+  diceLast = [0, 0];
   currentScore = 0;
   domCurrentScore.textContent = currentScore;
 }
@@ -227,6 +222,7 @@ function hold() {
     } else {
       domPlayer2Score.textContent = wholeScore[1];
     }
+
     if (wholeScore[active] >= maxScore) {
       if (active == 0) {
         applyClass(domPlayer1Score, "winner");
@@ -235,26 +231,32 @@ function hold() {
         applyClass(domPlayer2Score, "winner");
         applyClass(domPlayer2Name, "winner");
       }
-      //alert(playerNames[active] + " won the game! Congrats!");
       gamePlaying = false;
     } else {
-      toggleActive();  
+      if (dicesAmount == 2) {
+        dice = [0, 0];
+      } else {
+        dice = [0];
+      }
+      toggleActive();
     }
   }
 }
 
-// FUNCTIONS
-
 function initialSetup() {
+  //coersing
+  playerNames = [];
+  gamePlaying = false;
+  //DOM manipulations
   hideModal();
   hide(domPlayTable);  
   show(domPlay);
   domLineout.textContent = "Modify initial settings or start play with default ones.";
+  //events
   domRulesBtn.addEventListener("click", showRules);
   domSettingsBtn.addEventListener("click", showSettings);
   domPlay.addEventListener("click", startGame);
-  playerNames = [];
-  gamePlaying = false;
+  
 }
 
 function readSettings() {
@@ -266,17 +268,15 @@ function readSettings() {
       playerNames.push(document.getElementById("name-"+i).placeholder);
       document.getElementById("player-"+i+"-name").textContent = playerNames[i];
     }
-  } // output: playerNames[name1,name2]
+  }
   if (document.getElementById("one-dice").checked == true) {
     dice = [0];
     dicesAmount = dice.length;
-    console.log("Only " + dicesAmount + " dice: "+dice);
   } else {
     dice = [0, 0];
     dicesAmount = dice.length;
-    console.log(dicesAmount + " dices: "+dice);
-  } // output: dice[0] or dice [0,0]
-  maxScore = document.getElementById("totalscore").value; //output maxScore = number
+  }
+  maxScore = document.getElementById("totalscore").value;
 }
 
 function throwDices() {
@@ -284,20 +284,20 @@ function throwDices() {
     if (dice.length < 2) { // ONE DICE
       clearDices();
       diceLast[0] = dice[0];
-      dice[0] = Math.floor(Math.random()*6+1);      
+      dice[0] = Math.floor(Math.random()*6+1);
       domDice0.classList.add("dice-"+dice[0]);
       if (dice[0] == 1) {
-        alert("Dice show "+dice[0]+"! TOGGLING");
         toggleActive();
+        dice = [0];
       } else if (dice[0] == 6 && diceLast[0] == 6) {
         wholeScore[active] = 0;
-        alert("Dice show "+dice[0]+" twice! \nAll your pionts reseted to 0. TOGGLING");
         if (active == 0) {
           domPlayer1Score.textContent = 0;
         } else {
           domPlayer2Score.textContent = 0;
         }
         toggleActive();
+        dice = [0];
       } else {
         currentScore += dice[0];
         domCurrentScore.textContent = currentScore;
@@ -311,17 +311,17 @@ function throwDices() {
       dice[1] = Math.floor(Math.random()*6+1);
       domDice1.classList.add("dice-"+dice[1]);
       if (dice[0] + dice[1] == 2) {
-        alert("Dice show 1+1! TOGGLING");
         toggleActive();
+        dice = [0, 0];
       } else if (dice[0] + dice[1] == 12 && diceLast[0]+diceLast[1] == 12) {
         wholeScore[active] = 0;
-        alert("Dice show 6+6 twice! \nAll your pionts reseted to 0. TOGGLING");
         if (active == 0) {
           domPlayer1Score.textContent = 0;
         } else {
           domPlayer2Score.textContent = 0;
         }
         toggleActive();
+        dice = [0, 0];
       } else {
         currentScore += dice[0] + dice[1];
         domCurrentScore.textContent = currentScore;
@@ -342,22 +342,21 @@ function throwTurn() {
       active = 0;
       applyClass(domPlayer0, "active");
       removeClass(domPlayer1, "active");
-      console.log("Turn = player 1");
     } else if (pl[0] < pl[1]) {
       active = 1;
       applyClass(domPlayer1, "active");
       removeClass(domPlayer0, "active");
-      console.log("Turn = player 1");
     }
-    console.log("Iteration");
   } while (pl[0] == pl[1]);
   inform("It's " + playerNames[active] + "'s turn. \nStill want to play?");
 }
 
 function startGame() {
+  //coersing
   gamePlaying = true;
   active = undefined;
   dice = undefined;
+  //DOM manipulations
   clearDices();
   readSettings();
   hide(document.getElementById("current-score"));
@@ -377,22 +376,16 @@ function startGame() {
   domLineout.textContent = "Throw dices to play the first turn..."
   hide(domPlay);
   show(domPlayTable);
-  // выстроить ДОМ для игры согласно настроек;
-  // присвоить активную позицию согласно розыгрыша очереди хода
-
+  //events
   domThrow.addEventListener("click", throwTurn);
   domStop.addEventListener("click", askWantEndGame);
-  
-  
 }
 
-// GAMEPLAY ALGORYTHM
 function gamePlay() {
-  //console.log("Dices amount: " + dicesAmount + "\nFinal score limit: " + maxScore + "\nFirst player's name: " + playerNames[0] + "\nSecond player's name: " + playerNames[1] + "\n" + playerNames[0] + "\'s score: " + wholeScore[0] + "\n" + playerNames[1] + "\'s score: " + wholeScore[1] + "\nCurrent score: " + currentScore);
+  //events
   domThrow.removeEventListener("click", throwTurn);
   domThrow.addEventListener("click", throwDices);
   domHold.addEventListener("click", hold);
 }
-
 
 initialSetup();
