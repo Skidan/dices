@@ -125,9 +125,13 @@ function btnStartGame() {
   if (dicesAmount == 1) {
     show(domDice0);
     hide(domDice1);
+    diceLast = [0];
+    dice = [0];
   }else{
     show(domDice0);
     show(domDice1);
+    diceLast = [0, 0];
+    dice = [0, 0];
   }
   domPlayer1Score.textContent = wholeScore[0];
   domPlayer2Score.textContent = wholeScore[1];
@@ -273,18 +277,21 @@ function readSettings() {
 function throwDices() {
   if (gamePlaying) {
     if (dice.length < 2) { // ONE DICE
-      diceLast = [0];
       clearDices();
       diceLast[0] = dice[0];
-      dice[0] = Math.floor(Math.random()*6+1);
-      
+      dice[0] = Math.floor(Math.random()*6+1);      
       domDice0.classList.add("dice-"+dice[0]);
-      currentScore += dice[0];
-      domCurrentScore.textContent = currentScore;
-      
+      if (dice[0] == 1) {
+        toggleActive();
+      } else if (dice[0] == 6 && diceLast[0] == 6) {
+        wholeScore[active] = 0;
+        toggleActive();
+      } else {
+        currentScore += dice[0];
+        domCurrentScore.textContent = currentScore;
+      }
       
     }else{ // TWO DICES
-      diceLast = [0, 0];
       clearDices();
       diceLast[0] = dice[0];
       dice[0] = Math.floor(Math.random()*6+1);
