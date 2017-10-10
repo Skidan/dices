@@ -269,7 +269,7 @@ function throwTurn() {
     console.log("Iteration");
   } while (pl[0] == pl[1]);
   inform("It's " + playerNames[turn] + "'s turn. \nStill want to play?");
-  domThrow.removeEventListener("click", throwTurn);
+  
 }
 
 function startGame() {
@@ -303,7 +303,8 @@ function startGame() {
 
 // GAMEPLAY ALGORYTHM
 function gamePlay() {
-  console.log("Dices amount: " + dicesAmount + "\nFinal score limit: " + maxScore + "\nFirst player's name: " + playerNames[0] + "\nSecond player's name: " + playerNames[1] + "\n" + playerNames[0] + "\'s score: " + wholeScore[0] + "\n" + playerNames[1] + "\'s score: " + wholeScore[1] + "\nCurrent score: " + currentScore);
+  //console.log("Dices amount: " + dicesAmount + "\nFinal score limit: " + maxScore + "\nFirst player's name: " + playerNames[0] + "\nSecond player's name: " + playerNames[1] + "\n" + playerNames[0] + "\'s score: " + wholeScore[0] + "\n" + playerNames[1] + "\'s score: " + wholeScore[1] + "\nCurrent score: " + currentScore);
+  domThrow.removeEventListener("click", throwTurn);
   domThrow.addEventListener("click", throwDices);
   //domHold.addEventListener("click", hold);
 }
