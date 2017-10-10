@@ -66,7 +66,7 @@ function hideModal() {
   hide(domCloseBtn);
   hide(domDefaultsBtn);
   hide(domCancelBtn);
-  hide(domSaveBtn);
+  hide(domGotItBtn);
   hide(domOkBtn);
   hide(domEndGameBtn);
 }
@@ -144,7 +144,7 @@ function inform(string) {
   show(domInform);
   show(domGotItBtn);
   domInform.textContent = string;
-  domSaveBtn.addEventListener("click", btnGotIt);
+  domGotItBtn.addEventListener("click", btnGotIt);
 }
 
 // FUNCTIONS
