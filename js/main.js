@@ -192,15 +192,15 @@ function toggleActive() {
     removeClass(domPlayer1, "active");
   }
   currentScore = 0;
+  domCurrentScore.textContent = currentScore;
 }
 
 function hold() {
-  console.log(wholeScore[active]);
   wholeScore[active] += currentScore;
   if (active == 0) {
     domPlayer1Score.textContent = wholeScore[0];
   } else {
-    domPlayer2Score.textContent = wholeScore[2];
+    domPlayer2Score.textContent = wholeScore[1];
   }
   if (wholeScore[active] > maxScore) {
     alert(playerNames[active] + " won the game! Congrats!");
