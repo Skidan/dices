@@ -139,6 +139,8 @@ function btnStartGame() {
 }
 
 function btnEndGame() {
+  removeClass(domCurrentScore, "lightred");
+  removeClass(domCurrentScore, "darkred");
   gamePlaying = false;
   wholeScore = [0, 0]
   domPlayer1Score.textContent = wholeScore[0];
@@ -199,6 +201,8 @@ function inform(string) {
 }
 
 function toggleActive() {
+  removeClass(domCurrentScore, "lightred");
+  removeClass(domCurrentScore, "darkred");
   if (active == 0) {
     active = 1;
     applyClass(domPlayer1, "active");
@@ -326,6 +330,11 @@ function throwDices() {
         currentScore += dice[0] + dice[1];
         domCurrentScore.textContent = currentScore;
       }
+    }
+    if (wholeScore[active] + currentScore >= maxScore - 10 && wholeScore[active] + currentScore < maxScore) {
+      applyClass(domCurrentScore, "lightred");
+    } else if (wholeScore[active] + currentScore >= maxScore) {
+      applyClass(domCurrentScore, "darkred");
     }
   }
 }
