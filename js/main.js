@@ -2,7 +2,7 @@
 /* eslint-env browser */
 /* eslint-disable no-console */
 // DOM VAR
-var domHtml, domBody, domWrapper, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domDicesContainer, domThrowContainer, domDice0, domDice1, domCurrentScore, domThrow, domHold, domStop, domModal, domModalWindow, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domInform, domCloseBtn, domCancelBtn, domDefaultsBtn, domGotItBtn, domOkBtn, domEndGameBtn, domStartGameBtn;
+var domHtml, domBody, domWrapper, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domPlayer1Score, domPlayer2Score, domDicesContainer, domThrowContainer, domDice0, domDice1, domCurrentScore, domThrow, domHold, domStop, domModal, domModalWindow, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domInform, domCloseBtn, domCancelBtn, domDefaultsBtn, domGotItBtn, domOkBtn, domEndGameBtn, domStartGameBtn;
 domHtml = document.getElementsByTagName("html")[0];
 domBody = document.getElementsByTagName("body")[0];
 domWrapper = document.getElementById("wrapper");
@@ -12,6 +12,8 @@ domSettingsBtn = document.getElementById("settings-btn");
 domPlay = document.getElementById("play");
 domPlayTable = document.getElementById("playtable");
 //
+domPlayer1Score = document.getElementById("player-0-score");
+domPlayer2Score = document.getElementById("player-1-score");
 domDicesContainer = document.getElementById("dices");
 domThrowContainer = document.getElementById("throw");
 domDice0 = document.getElementById("dice-0");
@@ -38,7 +40,7 @@ domEndGameBtn = document.getElementById("end-game-btn");
 domStartGameBtn = document.getElementById("start-game-btn");
 
 // VAR
-var dice, dicesAmount, maxScore, gamePlaying, playerNames, turn;
+var dice, dicesAmount, maxScore, gamePlaying, playerNames, turn, wholeScore, currentScore;
 
 // ACTIONS
 function show(x) {
@@ -277,7 +279,8 @@ function startGame() {
 
 // GAMEPLAY ALGORYTHM
 function gamePlay() {
-  alert("And the play begins");
+  //alert("And the play begins");
+  console.log("Dices amount: " + dicesAmount + "\nFinal score limit: " + maxScore + "\nFirst player's name: " + playerNames[0] + "\nSecond player's name: " + playerNames[1] + "\n" + playerNames[0] + "\'s score: " + wholeScore[0] + "\n" + playerNames[1] + "\'s score: " + wholeScore[1] + "\nCurrent score: " + currentScore);
 }
 
 
