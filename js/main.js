@@ -195,6 +195,7 @@ function toggleActive() {
 }
 
 function hold() {
+  console.log(wholeScore[active]);
   wholeScore[active] += currentScore;
   if (active == 0) {
     domPlayer1Score.textContent = wholeScore[0];
@@ -291,23 +292,18 @@ function throwTurn() {
     domDice1.classList.add("dice-"+pl[1]);
     if (pl[0] > pl[1]) {
       active = 0;
+      applyClass(domPlayer0, "active");
+      removeClass(domPlayer1, "active");
       console.log("Turn = player 1");
     } else if (pl[0] < pl[1]) {
       active = 1;
+      applyClass(domPlayer1, "active");
+      removeClass(domPlayer0, "active");
       console.log("Turn = player 1");
     }
     console.log("Iteration");
   } while (pl[0] == pl[1]);
   inform("It's " + playerNames[active] + "'s turn. \nStill want to play?");
-  if (active == 0) {
-    active = 1;
-    applyClass(domPlayer1, "active");
-    removeClass(domPlayer0, "active");
-  } else {
-    active = 0;
-    applyClass(domPlayer0, "active");
-    removeClass(domPlayer1, "active");
-  }
 }
 
 function startGame() {
