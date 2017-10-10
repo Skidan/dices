@@ -282,6 +282,7 @@ function throwDices() {
       dice[0] = Math.floor(Math.random()*6+1);      
       domDice0.classList.add("dice-"+dice[0]);
       if (dice[0] == 1) {
+        console.log("Dice show "+dice[0]+"! TOGGLING");
         toggleActive();
       } else if (dice[0] == 6 && diceLast[0] == 6) {
         wholeScore[active] = 0;
