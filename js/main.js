@@ -2,7 +2,7 @@
 /* eslint-env browser */
 /* eslint-disable no-console */
 // DOM VAR
-var domHtml, domBody, domWrapper, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domDicesContainer, domThrowContainer, domDice0, domDice1, domCurrentScore, domThrow, domHold, domStop, domModal, domModalWindow, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domCloseBtn, domCancelBtn, domDefaultsBtn, domSaveBtn, domOkBtn, domEndGameBtn;
+var domHtml, domBody, domWrapper, domLineout, domRulesBtn, domSettingsBtn, domPlay, domPlayTable, domDicesContainer, domThrowContainer, domDice0, domDice1, domCurrentScore, domThrow, domHold, domStop, domModal, domModalWindow, domModalHeading, domRules, domNamesInput, domSettingsInput, domAlert, domInform, domCloseBtn, domCancelBtn, domDefaultsBtn, domGotItBtn, domOkBtn, domEndGameBtn;
 domHtml = document.getElementsByTagName("html")[0];
 domBody = document.getElementsByTagName("body")[0];
 domWrapper = document.getElementById("wrapper");
@@ -28,10 +28,11 @@ domRules = document.getElementById("rules");
 domNamesInput = document.getElementById("names-input");
 domSettingsInput = document.getElementById("settings-input");
 domAlert = document.getElementById("alert");
+domInform = document.getElementById("inform");
 domCloseBtn = document.getElementById("close-btn");
 domCancelBtn = document.getElementById("cancel-btn");
 domDefaultsBtn = document.getElementById("defaults-btn");
-domSaveBtn = document.getElementById("save-btn");
+domGotItBtn = document.getElementById("gotit-btn");
 domOkBtn = document.getElementById("ok-btn");
 domEndGameBtn = document.getElementById("end-game-btn");
 
@@ -61,6 +62,7 @@ function hideModal() {
   hide(domNamesInput);
   hide(domSettingsInput);
   hide(domAlert);
+  hide(domInform);
   hide(domCloseBtn);
   hide(domDefaultsBtn);
   hide(domCancelBtn);
@@ -93,10 +95,12 @@ function btnDefaults() {
   document.getElementById("one-dice").checked = true;
   document.getElementById("totalscore").value = 100;
 }
-function btnSave() {
-  readSettings();
+
+function btnGotIt() {
+  domInform.textContent = "Info";
   hideModal();
 }
+
 function btnEndGame() {
   gamePlaying = false;
   hideModal();
@@ -133,7 +137,14 @@ function showSettings() {
   } else {
     askWantEndGame();
   }
-  
+}
+
+function inform(string) {
+  showModal();
+  show(domInform);
+  show(domGotItBtn);
+  domInform.textContent = string;
+  domSaveBtn.addEventListener("click", btnGotIt);
 }
 
 // FUNCTIONS
@@ -217,7 +228,7 @@ function throwTurn() {
     }
     console.log("Iteration");
   } while (pl[0] == pl[1]);
-  console.log("End of iteration");
+  inform("It's " + playerNames[turn] + "'s turn. \nStill want to play?");
 }
 
 function startGame() {
