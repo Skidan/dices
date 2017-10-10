@@ -137,6 +137,9 @@ function btnStartGame() {
 
 function btnEndGame() {
   gamePlaying = false;
+  wholeScore = [0, 0]
+  domPlayer1Score.textContent = wholeScore[0];
+  domPlayer2Score.textContent = wholeScore[1];
   hideModal();
   initialSetup();
 }
@@ -198,24 +201,26 @@ function toggleActive() {
 }
 
 function hold() {
-  wholeScore[active] += currentScore;
-  if (active == 0) {
-    domPlayer1Score.textContent = wholeScore[0];
-  } else {
-    domPlayer2Score.textContent = wholeScore[1];
-  }
-  if (wholeScore[active] > maxScore) {
+  while (gamePlaying) {
+    wholeScore[active] += currentScore;
     if (active == 0) {
-      applyClass(domPlayer1Score, "winner");
-      applyClass(domPlayer1Name, "winner");
+      domPlayer1Score.textContent = wholeScore[0];
     } else {
-      applyClass(domPlayer2Score, "winner");
-      applyClass(domPlayer2Name, "winner");
+      domPlayer2Score.textContent = wholeScore[1];
     }
-    alert(playerNames[active] + " won the game! Congrats!");
-    gamePlaying = false;
-  } else {
-    toggleActive();  
+    if (wholeScore[active] > maxScore) {
+      if (active == 0) {
+        applyClass(domPlayer1Score, "winner");
+        applyClass(domPlayer1Name, "winner");
+      } else {
+        applyClass(domPlayer2Score, "winner");
+        applyClass(domPlayer2Name, "winner");
+      }
+      //alert(playerNames[active] + " won the game! Congrats!");
+      gamePlaying = false;
+    } else {
+      toggleActive();  
+    }
   }
 }
 
@@ -256,33 +261,35 @@ function readSettings() {
 }
 
 function throwDices() {
-  if (dice.length < 2) { // ONE DICE
-    diceLast = [0];
-    for (var n=1; n<7; n++) {
-      removeClass(domDice0, "dice-"+n);
+  while (gamePlaying) {
+    if (dice.length < 2) { // ONE DICE
+      diceLast = [0];
+      for (var n=1; n<7; n++) {
+        removeClass(domDice0, "dice-"+n);
+      }
+      diceLast[0] = dice[0];
+      dice[0] = Math.floor(Math.random()*6+1);
+      console.log(dice[0]);
+      domDice0.classList.add("dice-"+dice[0]);
+      currentScore += dice[0];
+      domCurrentScore.textContent = currentScore;
+    }else{ // TWO DICES
+      diceLast = [0, 0];
+      for (n=1; n<7; n++) {
+        removeClass(domDice0, "dice-"+n);
+      }
+      for (n=1; n<7; n++) {
+        removeClass(domDice1, "dice-"+n);
+      }
+      diceLast[0] = dice[0];
+      dice[0] = Math.floor(Math.random()*6+1);
+      domDice0.classList.add("dice-"+dice[0]);
+      diceLast[1] = dice[1];
+      dice[1] = Math.floor(Math.random()*6+1);
+      domDice1.classList.add("dice-"+dice[1]);
+      currentScore += dice[0] + dice[1];
+      domCurrentScore.textContent = currentScore;
     }
-    diceLast[0] = dice[0];
-    dice[0] = Math.floor(Math.random()*6+1);
-    console.log(dice[0]);
-    domDice0.classList.add("dice-"+dice[0]);
-    currentScore += dice[0];
-    domCurrentScore.textContent = currentScore;
-  }else{ // TWO DICES
-    diceLast = [0, 0];
-    for (n=1; n<7; n++) {
-      removeClass(domDice0, "dice-"+n);
-    }
-    for (n=1; n<7; n++) {
-      removeClass(domDice1, "dice-"+n);
-    }
-    diceLast[0] = dice[0];
-    dice[0] = Math.floor(Math.random()*6+1);
-    domDice0.classList.add("dice-"+dice[0]);
-    diceLast[1] = dice[1];
-    dice[1] = Math.floor(Math.random()*6+1);
-    domDice1.classList.add("dice-"+dice[1]);
-    currentScore += dice[0] + dice[1];
-    domCurrentScore.textContent = currentScore;
   }
 }
 
