@@ -314,6 +314,22 @@ function throwDices() {
       diceLast[1] = dice[1];
       dice[1] = Math.floor(Math.random()*6+1);
       domDice1.classList.add("dice-"+dice[1]);
+      
+      if (dice[0] == dice[1]) {
+        switch (dice[0]) {
+          case 1: currentScore += 25; domCurrentScore.textContent = currentScore; break;
+          case 6: toggleActive(); wholeScore[active] = 0; dice = [0, 0]; break;
+          default: currentScore += (dice[0] + dice[1]) * 2; domCurrentScore.textContent = currentScore; break;
+        }
+      } else if (dice[0] == 1 || dice[1] == 1) {
+        toggleActive();
+        dice = [0, 0];
+      } else {
+        currentScore += dice[0] + dice[1];
+        domCurrentScore.textContent = currentScore;
+      }
+      
+      /*
       if (dice[0] + dice[1] == 2) {
         toggleActive();
         dice = [0, 0];
@@ -330,6 +346,7 @@ function throwDices() {
         currentScore += dice[0] + dice[1];
         domCurrentScore.textContent = currentScore;
       }
+      */
     }
     if (wholeScore[active] + currentScore >= maxScore - 10 && wholeScore[active] + currentScore < maxScore) {
       applyClass(domCurrentScore, "lightred");
