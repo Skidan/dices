@@ -318,7 +318,7 @@ function throwDices() {
       if (dice[0] == dice[1]) {
         switch (dice[0]) {
           case 1: currentScore += 25; domCurrentScore.textContent = currentScore; break;
-          case 6: toggleActive(); wholeScore[active] = 0; dice = [0, 0]; break;
+          case 6: wholeScore[active] = 0; dice = [0, 0]; toggleActive(); break;
           default: currentScore += (dice[0] + dice[1]) * 2; domCurrentScore.textContent = currentScore; break;
         }
       } else if (dice[0] == 1 || dice[1] == 1) {
