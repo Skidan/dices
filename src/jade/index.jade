@@ -42,7 +42,24 @@ html(lang="en")
 			#modal-window
 				h3#modal-heading Modal window heading
 				#rules
-					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta nulla,
+          h4 The Pig game
+          p Plays between 2 players.
+					p Goal: be the first player to reach maximal score (by default 100). Can be played with one or two dices.
+          h4 Gameplay
+          h6 One dice:
+          p On a turn, a player rolls the die repeatedly until either: 
+            ul 
+              li A 1 is rolled: that player's turn ends and no points are earned.
+              li The player chooses to hold (stop rolling): all of the points rolled during that turn are added to his or her score.
+          h6 Two dices:
+          p If a player rolls a single 1, the turn ends and no points are scored. However, if a player rolls double 1s, that counts as 25 points. 
+          br Other doubles are worth double points, so that a 2-2 is worth 8 points, 3-3 is worth 12, 4-4 is worth 16, 5-5 is worth 20, and 6-6 is worth 24.
+          h4 Game end
+          p When a player reaches a total of 100 or more points, the game ends and that player is the winner.
+          h4 Scoring examples
+          p Example 1: Sherri rolls a 3 and decides to continue. She then chooses to roll seven more times (6, 6, 6, 4, 5, 6, 1). Because she rolled a 1, Sherri's turn ends and she earns 0 points. 
+          p Example 2: Craig rolls a 6 and decides to continue. He then chooses to roll four more times (3, 4, 2, 6) and decides to hold. Craig earns 21 points for this turn (6+3+4+2+6=21).
+          
 				#names-input
 					span.names Input first player's name: 
 					input(type="text" size="12" name="firstplayername" placeholder="Player1")#name-0
